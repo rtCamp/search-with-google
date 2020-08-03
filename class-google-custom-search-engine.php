@@ -98,8 +98,6 @@ class Google_Custom_Search_Engine {
 
 				if ( ! is_wp_error( $result ) ) {
 
-					error_log( var_export( $result->queries, true ) );
-					error_log( var_export( $result->searchInformation, true ) );
 					if ( isset( $result->searchInformation->totalResults ) && isset( $result->items ) ) {
 
 						$total_results = $result->searchInformation->totalResults;

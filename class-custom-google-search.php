@@ -52,7 +52,7 @@ class Custom_Google_Search {
 		$cse = Google_Custom_Search_Engine::get_instance();
 
 
-		delete_transient( $this->get_transient_key(  $search_query, $page, $posts_per_page ) );
+		// delete_transient( $this->get_transient_key(  $search_query, $page, $posts_per_page ) );
 		$cse_results = get_transient( $this->get_transient_key( $search_query, $page, $posts_per_page ) );
 
 		if ( false === $cse_results ) {
@@ -70,8 +70,7 @@ class Custom_Google_Search {
 		$query->found_posts   = $cse_results['total_results'] > 100 ? 100 : (int) $cse_results['total_results'];
 		$query->num_posts     = $query->found_posts;
 		$query->max_num_pages = intval( floor( $query->found_posts / $posts_per_page ) );
-		error_log( var_export( $query->found_posts, true ) );
-		error_log( var_export( $query->max_num_pages, true ) );
+
 		return $posts;
 	}
 
