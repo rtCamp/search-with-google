@@ -2,19 +2,19 @@
 /**
  * Register plugin settings.
  *
- * @package custom-gogle-search
+ * @package google-custom-search
  */
 
-namespace rtCamp\CustomGoogleSearch;
+namespace rtCamp\GoogleCustomSearch;
 
 /**
- * Class Custom_Google_Search_Settings
+ * Class Google_Custom_Search_Settings
  *
- * @package rtCamp\CustomGoogleSearch
+ * @package rtCamp\GoogleCustomSearch
  */
-class Custom_Google_Search_Settings {
+class Google_Custom_Search_Settings {
 
-	use \rtCamp\CustomGoogleSearch\Traits\Singleton;
+	use \rtCamp\GoogleCustomSearch\Traits\Singleton;
 
 	/**
 	 * Action / Filters to be declare here.
@@ -39,7 +39,7 @@ class Custom_Google_Search_Settings {
 		// Register a new section in the "reading" page.
 		add_settings_section(
 			'cse_settings_section',
-			__( 'Custom Google Search Settings', 'custom-gogle-search' ),
+			__( 'Custom Google Search Settings', 'google-custom-search' ),
 			array( $this, 'cse_settings_section_cb' ),
 			'reading'
 		);
@@ -47,14 +47,14 @@ class Custom_Google_Search_Settings {
 		// Register new fields in the "cse_settings_section" section, inside the "reading" page.
 		add_settings_field(
 			'cse_api_key',
-			__( 'API Key', 'custom-gogle-search' ),
+			__( 'API Key', 'google-custom-search' ),
 			array( $this, 'cse_api_key_field_cb' ),
 			'reading',
 			'cse_settings_section'
 		);
 		add_settings_field(
 			'cse_id',
-			__( 'Engine ID', 'custom-gogle-search' ),
+			__( 'Engine ID', 'google-custom-search' ),
 			array( $this, 'cse_id_field_cb' ),
 			'reading',
 			'cse_settings_section'
@@ -96,6 +96,6 @@ class Custom_Google_Search_Settings {
 add_action(
 	'plugins_loaded',
 	function () {
-		Custom_Google_Search_Settings::get_instance();
+		Google_Custom_Search_Settings::get_instance();
 	}
 );

@@ -2,15 +2,15 @@
 /**
  * Register Google_Custom_Search_Engine class  functionality.
  *
- * @package custom-gogle-search
+ * @package google-custom-search
  */
 
-namespace rtCamp\CustomGoogleSearch;
+namespace rtCamp\GoogleCustomSearch;
 
 /**
  * Class Google_Custom_Search_Engine.
  *
- * @package custom-gogle-search
+ * @package google-custom-search
  */
 class Google_Custom_Search_Engine {
 
@@ -35,7 +35,7 @@ class Google_Custom_Search_Engine {
 	 */
 	private $cse_id = '';
 
-	use \rtCamp\CustomGoogleSearch\Traits\Singleton;
+	use \rtCamp\GoogleCustomSearch\Traits\Singleton;
 
 	/**
 	 * Initialize the settings.
@@ -100,7 +100,11 @@ class Google_Custom_Search_Engine {
 
 					if ( isset( $result->searchInformation->totalResults ) && isset( $result->items ) ) {
 
-						$total_results = $result->searchInformation->totalResults;
+						$total_results = (int) $result->searchInformation->totalResults;
+
+						if ( 0 === $total_results && $page > 1 ) {
+							return $this->get_search_results( $search_query, $page - 1, $posts_per_page );
+						}
 
 						if ( ! empty( $result->items ) ) {
 							foreach ( $result->items as $item ) {
@@ -114,7 +118,7 @@ class Google_Custom_Search_Engine {
 						}
 					}
 				} else {
-					return new \WP_Error( $response_code, 'Unknown error occurred' );
+					return new \WP_Error( $response_code, __( 'Unknown error occurred', 'google-custom-search' ) );
 				}
 			}
 		}

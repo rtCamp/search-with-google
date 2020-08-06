@@ -2,22 +2,22 @@
 /**
  * Register plugin Functionality.
  *
- * @package custom-gogle-search
+ * @package google-custom-search
  */
 
-namespace rtCamp\CustomGoogleSearch;
+namespace rtCamp\GoogleCustomSearch;
 
-use \rtCamp\CustomGoogleSearch\Google_Custom_Search_Engine;
-use \rtCamp\CustomGoogleSearch\Custom_Google_Search_Settings;
+use \rtCamp\GoogleCustomSearch\Google_Custom_Search_Engine;
+use \rtCamp\GoogleCustomSearch\Google_Custom_Search_Settings;
 
 /**
- * Class Custom_Google_Search.
+ * Class Google_Custom_Search.
  *
- * @package custom-gogle-search
+ * @package google-custom-search
  */
-class Custom_Google_Search {
+class Google_Custom_Search {
 
-	use \rtCamp\CustomGoogleSearch\Traits\Singleton;
+	use \rtCamp\GoogleCustomSearch\Traits\Singleton;
 
 	/**
 	 * Initialize Block.
@@ -52,7 +52,7 @@ class Custom_Google_Search {
 		$cse = Google_Custom_Search_Engine::get_instance();
 
 
-		// delete_transient( $this->get_transient_key(  $search_query, $page, $posts_per_page ) );
+		//delete_transient( $this->get_transient_key(  $search_query, $page, $posts_per_page ) );
 		$cse_results = get_transient( $this->get_transient_key( $search_query, $page, $posts_per_page ) );
 
 		if ( false === $cse_results ) {
@@ -156,6 +156,6 @@ class Custom_Google_Search {
 add_action(
 	'plugins_loaded',
 	function () {
-		Custom_Google_Search::get_instance();
+		Google_Custom_Search::get_instance();
 	}
 );

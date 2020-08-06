@@ -2,10 +2,10 @@
 /**
  * Trait Singleton
  *
- * @package custom-google-search
+ * @package google-custom-search
  */
 
-namespace rtCamp\CustomGoogleSearch\Traits;
+namespace rtCamp\GoogleCustomSearch\Traits;
 
 /**
  * Trait Singleton
