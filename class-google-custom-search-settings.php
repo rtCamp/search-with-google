@@ -39,7 +39,7 @@ class Google_Custom_Search_Settings {
 		// Register a new section in the "reading" page.
 		add_settings_section(
 			'cse_settings_section',
-			__( 'Custom Google Search Settings', 'google-custom-search' ),
+			__( 'Google Custom Search Settings', 'google-custom-search' ),
 			array( $this, 'cse_settings_section_cb' ),
 			'reading'
 		);
