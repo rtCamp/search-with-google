@@ -4,30 +4,31 @@
  * Description: A plugin for replacing WordPress default search with Google Custom Search results.
  * Version:     1.0
  * Author:      rtCamp, kiranpotphode
- * Author URI:  http://rtCamp.com
+ * Author URI:  https://rtCamp.com
  * License:     GPLv2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: google-custom-search
  *
  * @package  google-custom-search
  */
 
-if ( ! defined( 'GOOGLE_CUSTOM_SEARCH_VER' ) ) {
-	define( 'GOOGLE_CUSTOM_SEARCH_VER', '1.0' );
-}
-
-if ( ! defined( 'GOOGLE_CUSTOM_SEARCH_DIR' ) ) {
-	define( 'GOOGLE_CUSTOM_SEARCH_DIR', __DIR__ );
-}
-
-if ( ! defined( 'GOOGLE_CUSTOM_SEARCH_URL' ) ) {
-	define( 'GOOGLE_CUSTOM_SEARCH_URL', plugin_dir_url( __FILE__ ) );
-}
-
 if ( ! defined( 'ABSPATH' ) ) {
 	return;
 }
 
-require_once GOOGLE_CUSTOM_SEARCH_DIR . '/trait-singleton.php';
-require_once GOOGLE_CUSTOM_SEARCH_DIR . '/class-google-custom-search.php';
-require_once GOOGLE_CUSTOM_SEARCH_DIR . '/class-google-custom-search-settings.php';
-require_once GOOGLE_CUSTOM_SEARCH_DIR . '/class-google-custom-search-engine.php';
+if ( ! defined( 'GOOGLE_CUSTOM_SEARCH_PATH' ) ) {
+	define( 'GOOGLE_CUSTOM_SEARCH_PATH', __DIR__ );
+}
+
+require_once GOOGLE_CUSTOM_SEARCH_PATH . '/inc/helpers/autoloader.php';
+
+/**
+ * To load plugin manifest class.
+ *
+ * @return void
+ */
+function google_custom_search_plugin_loader() {
+	\RT\Google_Custom_Search\Inc\Plugin::get_instance();
+}
+
+google_custom_search_plugin_loader();

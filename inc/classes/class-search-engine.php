@@ -1,21 +1,25 @@
 <?php
 /**
- * Register Google_Custom_Search_Engine class  functionality.
+ * Register Search_Engine class functionality.
  *
  * @package google-custom-search
  */
 
-namespace rtCamp\GoogleCustomSearch;
+namespace RT\Google_Custom_Search\Inc;
+
+use \RT\Google_Custom_Search\Inc\Traits\Singleton;
 
 /**
- * Class Google_Custom_Search_Engine.
+ * Class Search_Engine.
  *
  * @package google-custom-search
  */
-class Google_Custom_Search_Engine {
+class Search_Engine {
+
+	use Singleton;
 
 	/**
-	 * Google Custom Search API URL.
+	 * Custom Search Site Restricted JSON API URL.
 	 *
 	 * @var string
 	 */
@@ -35,14 +39,19 @@ class Google_Custom_Search_Engine {
 	 */
 	private $cse_id = '';
 
-	use \rtCamp\GoogleCustomSearch\Traits\Singleton;
+	/**
+	 * Construct method.
+	 */
+	protected function __construct() {
+		$this->init();
+	}
 
 	/**
-	 * Initialize the settings.
+	 * Action / Filters to be declare here.
 	 */
 	protected function init() {
-		$this->api_key = get_option( 'cse_api_key' );
-		$this->cse_id  = get_option( 'cse_id' );
+		$this->api_key = get_option( 'gcs_api_key' );
+		$this->cse_id  = get_option( 'gcs_cse_id' );
 	}
 
 	/**
@@ -59,6 +68,7 @@ class Google_Custom_Search_Engine {
 		$item_details  = array();
 		$total_results = 0;
 
+		// Create request URL with required parameters.
 		$request_url = add_query_arg(
 			array(
 				'key' => $this->api_key,
@@ -88,7 +98,7 @@ class Google_Custom_Search_Engine {
 		if ( 200 !== $response_code && ! empty( $response_message ) ) {
 			return new \WP_Error( $response_code, $response_message );
 		} elseif ( 200 !== $response_code ) {
-			return new \WP_Error( $response_code, 'Unknown error occurred' );
+			return new \WP_Error( $response_code, __( 'Unknown error occurred', 'google-custom-search' ) );
 		} else {
 
 			if ( ! is_wp_error( $response ) ) {
@@ -102,6 +112,7 @@ class Google_Custom_Search_Engine {
 
 						$total_results = (int) $result->searchInformation->totalResults;
 
+						// If no results found and pagination request then try another request.
 						if ( 0 === $total_results && $page > 1 ) {
 							return $this->get_search_results( $search_query, $page - 1, $posts_per_page );
 						}
