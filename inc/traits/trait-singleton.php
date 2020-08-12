@@ -22,7 +22,7 @@
  *
  * If you specifically need multiple objects, then use a normal class.
  *
- * @package project-name-features
+ * @package google-custom-search
  */
 
 namespace RT\Google_Custom_Search\Inc\Traits;

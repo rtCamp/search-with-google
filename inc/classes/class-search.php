@@ -11,7 +11,7 @@ use \RT\Google_Custom_Search\Inc\Traits\Singleton;
 use \RT\Google_Custom_Search\Inc\Search_Engine;
 
 /**
- * Class Google_Custom_Search.
+ * Class Search.
  *
  * @package google-custom-search
  */
@@ -69,7 +69,7 @@ class Search {
 			}
 		}
 
-		if ( is_wp_error( $cse_results ) || ! isset( $cse_results['items'] ) ) {
+		if ( is_wp_error( $cse_results ) || empty( $cse_results['items'] ) ) {
 			return $posts;
 		}
 
@@ -78,7 +78,7 @@ class Search {
 
 		// Set Query object to get pagination working.
 		$query->set( 'posts_per_page', $posts_per_page );
-		$query->found_posts   = $cse_results['total_results'] > 100 ? 100 : (int) $cse_results['total_results']; // Custom Search Site Restricted JSON API return max 100 actual results.
+		$query->found_posts   = $cse_results['total_results'] > 100 ? 100 : intval( $cse_results['total_results'] ); // Custom Search Site Restricted JSON API return max 100 actual results.
 		$query->max_num_pages = intval( floor( $query->found_posts / $posts_per_page ) );
 
 		return $posts;

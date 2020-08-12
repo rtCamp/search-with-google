@@ -82,7 +82,7 @@ class Settings {
 		$setting = get_option( 'gcs_api_key' );
 		// Output the field.
 		?>
-		<input type="text" name="gcs_api_key" value="<?php echo isset( $setting ) ? esc_attr( $setting ) : ''; ?>">
+		<input type="text" name="gcs_api_key" value="<?php echo ! empty( $setting ) ? esc_attr( $setting ) : ''; ?>">
 		<?php
 	}
 
@@ -94,7 +94,7 @@ class Settings {
 		$setting = get_option( 'gcs_cse_id' );
 		// Output the field.
 		?>
-		<input type="text" name="gcs_cse_id" value="<?php echo isset( $setting ) ? esc_attr( $setting ) : ''; ?>">
+		<input type="text" name="gcs_cse_id" value="<?php echo ! empty( $setting ) ? esc_attr( $setting ) : ''; ?>">
 		<?php
 	}
 }
