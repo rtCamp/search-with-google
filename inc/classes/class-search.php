@@ -69,7 +69,7 @@ class Search {
 			}
 		}
 
-		if ( is_wp_error( $cse_results ) && ! isset( $cse_results['items'] ) ) {
+		if ( is_wp_error( $cse_results ) || ! isset( $cse_results['items'] ) ) {
 			return $posts;
 		}
 
