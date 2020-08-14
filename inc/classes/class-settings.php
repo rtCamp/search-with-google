@@ -5,21 +5,27 @@
  * @package google-custom-search
  */
 
-namespace rtCamp\GoogleCustomSearch;
+namespace RT\Google_Custom_Search\Inc;
+
+use \RT\Google_Custom_Search\Inc\Traits\Singleton;
 
 /**
- * Class Google_Custom_Search_Settings
- *
- * @package rtCamp\GoogleCustomSearch
+ * Class Settings
  */
-class Google_Custom_Search_Settings {
+class Settings {
 
-	use \rtCamp\GoogleCustomSearch\Traits\Singleton;
+	use Singleton;
 
+	/**
+	 * Construct method.
+	 */
+	protected function __construct() {
+		$this->setup_hooks();
+	}
 	/**
 	 * Action / Filters to be declare here.
 	 */
-	protected function init() {
+	protected function setup_hooks() {
 
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
 	}
@@ -33,8 +39,8 @@ class Google_Custom_Search_Settings {
 			'sanitize_callback' => 'sanitize_text_field',
 			'default'           => null,
 		);
-		register_setting( 'reading', 'cse_api_key', $args );
-		register_setting( 'reading', 'cse_id', $args );
+		register_setting( 'reading', 'gcs_api_key', $args );
+		register_setting( 'reading', 'gcs_cse_id', $args );
 
 		// Register a new section in the "reading" page.
 		add_settings_section(
@@ -46,14 +52,14 @@ class Google_Custom_Search_Settings {
 
 		// Register new fields in the "cse_settings_section" section, inside the "reading" page.
 		add_settings_field(
-			'cse_api_key',
+			'gcs_api_key',
 			__( 'API Key', 'google-custom-search' ),
 			array( $this, 'cse_api_key_field_cb' ),
 			'reading',
 			'cse_settings_section'
 		);
 		add_settings_field(
-			'cse_id',
+			'gcs_cse_id',
 			__( 'Engine ID', 'google-custom-search' ),
 			array( $this, 'cse_id_field_cb' ),
 			'reading',
@@ -73,10 +79,10 @@ class Google_Custom_Search_Settings {
 	 */
 	public function cse_api_key_field_cb() {
 		// Get the value of the setting we've registered with register_setting().
-		$setting = get_option( 'cse_api_key' );
+		$setting = get_option( 'gcs_api_key' );
 		// Output the field.
 		?>
-		<input type="text" name="cse_api_key" value="<?php echo isset( $setting ) ? esc_attr( $setting ) : ''; ?>">
+		<input type="text" name="gcs_api_key" value="<?php echo ! empty( $setting ) ? esc_attr( $setting ) : ''; ?>">
 		<?php
 	}
 
@@ -85,17 +91,11 @@ class Google_Custom_Search_Settings {
 	 */
 	public function cse_id_field_cb() {
 		// Get the value of the setting we've registered with register_setting().
-		$setting = get_option( 'cse_id' );
+		$setting = get_option( 'gcs_cse_id' );
 		// Output the field.
 		?>
-		<input type="text" name="cse_id" value="<?php echo isset( $setting ) ? esc_attr( $setting ) : ''; ?>">
+		<input type="text" name="gcs_cse_id" value="<?php echo ! empty( $setting ) ? esc_attr( $setting ) : ''; ?>">
 		<?php
 	}
 }
 
-add_action(
-	'plugins_loaded',
-	function () {
-		Google_Custom_Search_Settings::get_instance();
-	}
-);

@@ -5,24 +5,31 @@
  * @package google-custom-search
  */
 
-namespace rtCamp\GoogleCustomSearch;
+namespace RT\Google_Custom_Search\Inc;
 
-use \rtCamp\GoogleCustomSearch\Google_Custom_Search_Engine;
-use \rtCamp\GoogleCustomSearch\Google_Custom_Search_Settings;
+use \RT\Google_Custom_Search\Inc\Traits\Singleton;
+use \RT\Google_Custom_Search\Inc\Search_Engine;
 
 /**
- * Class Google_Custom_Search.
+ * Class Search.
  *
  * @package google-custom-search
  */
-class Google_Custom_Search {
+class Search {
 
-	use \rtCamp\GoogleCustomSearch\Traits\Singleton;
+	use Singleton;
 
 	/**
-	 * Initialize Block.
+	 * Construct method.
 	 */
-	protected function init() {
+	protected function __construct() {
+		$this->setup_hooks();
+	}
+
+	/**
+	 * Action / Filters to be declare here.
+	 */
+	protected function setup_hooks() {
 
 		/**
 		 * Filters.
@@ -46,13 +53,11 @@ class Google_Custom_Search {
 
 		$search_query   = $query->get( 's' );
 		$page           = ! empty( $query->get( 'paged' ) ) ? $query->get( 'paged' ) : 1;
-		$posts_per_page = $query->get( 'posts_per_page' ) > 10 ? 10 : $query->get( 'posts_per_page' ); // Restrict posts per page to 10.
+		$posts_per_page = $query->get( 'posts_per_page' ) > 10 ? 10 : $query->get( 'posts_per_page' ); // Restrict posts per page to 10 as Custom Search Site Restricted JSON API allows max 10 results per page.
 
 		// Get query result from Google Custom Search Engine.
-		$cse = Google_Custom_Search_Engine::get_instance();
+		$cse = Search_Engine::get_instance();
 
-
-		//delete_transient( $this->get_transient_key(  $search_query, $page, $posts_per_page ) );
 		$cse_results = get_transient( $this->get_transient_key( $search_query, $page, $posts_per_page ) );
 
 		if ( false === $cse_results ) {
@@ -64,11 +69,16 @@ class Google_Custom_Search {
 			}
 		}
 
-		$posts = $this->get_posts( $cse_results['items'] );
-		$query->set( 'posts_per_page', $posts_per_page );
+		if ( is_wp_error( $cse_results ) || empty( $cse_results['items'] ) ) {
+			return $posts;
+		}
 
-		$query->found_posts   = $cse_results['total_results'] > 100 ? 100 : (int) $cse_results['total_results'];
-		$query->num_posts     = $query->found_posts;
+		// Translate results from Google Search into WordPress Posts.
+		$posts = $this->get_posts( $cse_results['items'] );
+
+		// Set Query object to get pagination working.
+		$query->set( 'posts_per_page', $posts_per_page );
+		$query->found_posts   = $cse_results['total_results'] > 100 ? 100 : intval( $cse_results['total_results'] ); // Custom Search Site Restricted JSON API return max 100 actual results.
 		$query->max_num_pages = intval( floor( $query->found_posts / $posts_per_page ) );
 
 		return $posts;
@@ -84,7 +94,7 @@ class Google_Custom_Search {
 	 * @return string
 	 */
 	public function get_transient_key( $search_query, $page, $posts_per_page ) {
-		return 'cse_results_' . sanitize_title( $search_query ) . '_' . $page . '_' . $posts_per_page;
+		return 'gcs_results_' . sanitize_title( $search_query ) . '_' . $page . '_' . $posts_per_page;
 	}
 
 	/**
@@ -97,8 +107,10 @@ class Google_Custom_Search {
 	public function get_posts( $items ) {
 		$posts = array();
 
-		foreach ( $items as $item ) {
-			$posts[] = $this->get_post( $item );
+		if ( ! empty( $items ) ) {
+			foreach ( $items as $item ) {
+				$posts[] = $this->get_post( $item );
+			}
 		}
 
 		return $posts;
@@ -124,16 +136,12 @@ class Google_Custom_Search {
 		$post->post_status    = 'publish';
 		$post->comment_status = 'closed';
 		$post->ping_status    = 'closed';
-		$post->post_name      = $this->get_post_name( $item['link'] ); // Append random number to avoid clash.
+		$post->post_name      = $this->get_post_name( $item['link'] ); // Get post slug from URL.
 		$post->post_type      = 'page';
 		$post->filter         = 'raw'; // Important!
 
-
 		// Convert to WP_Post object.
 		$wp_post = new \WP_Post( $post );
-
-		// Add the fake post to the cache
-		//wp_cache_add( $post_id, $wp_post, 'posts' );
 
 		return $wp_post;
 	}
@@ -152,10 +160,3 @@ class Google_Custom_Search {
 		return ltrim( $url_parse['path'], '/' );
 	}
 }
-
-add_action(
-	'plugins_loaded',
-	function () {
-		Google_Custom_Search::get_instance();
-	}
-);
