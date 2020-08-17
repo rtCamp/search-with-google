@@ -132,7 +132,7 @@ class Search {
 		$post->post_date      = current_time( 'mysql' );
 		$post->post_date_gmt  = current_time( 'mysql', 1 );
 		$post->post_title     = $item['title'];
-		$post->post_content   = $item['htmlSnippet'];
+		$post->post_content   = $item['snippet'];
 		$post->post_status    = 'publish';
 		$post->comment_status = 'closed';
 		$post->ping_status    = 'closed';
