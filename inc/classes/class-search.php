@@ -35,6 +35,7 @@ class Search {
 		 * Filters.
 		 */
 		add_filter( 'posts_pre_query', array( $this, 'filter_search_query' ), 10, 2 );
+		add_filter( 'page_link', array( $this, 'update_permalink' ), 10, 2 );
 	}
 
 	/**
@@ -132,11 +133,12 @@ class Search {
 		$post->post_date      = current_time( 'mysql' );
 		$post->post_date_gmt  = current_time( 'mysql', 1 );
 		$post->post_title     = $item['title'];
-		$post->post_content   = $item['htmlSnippet'];
+		$post->post_content   = $item['snippet'];
 		$post->post_status    = 'publish';
 		$post->comment_status = 'closed';
 		$post->ping_status    = 'closed';
 		$post->post_name      = $this->get_post_name( $item['link'] ); // Get post slug from URL.
+		$post->search_permalink = $item['link']; // Get post permalink from URL. This will replace the WP default permalink.
 		$post->post_type      = 'page';
 		$post->filter         = 'raw'; // Important!
 
@@ -158,5 +160,23 @@ class Search {
 		$url_parse = wp_parse_url( $url );
 
 		return ltrim( $url_parse['path'], '/' );
+	}
+
+	/**
+	 * Set Permalink of search result from Custom search results.
+	 *
+	 * @param string $permalink Page URL.
+	 * @param string $post Post ID.
+	 *
+	 * @return string Updated permalink.
+	 */
+	public function update_permalink( $permalink, $post ) {
+		$post = get_post( $post );
+
+		if ( ! empty( $post->search_permalink )  ) {
+			return $post->search_permalink;
+		}
+
+		return $permalink;
 	}
 }

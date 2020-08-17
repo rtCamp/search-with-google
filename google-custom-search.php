@@ -3,7 +3,7 @@
  * Plugin Name: Google Custom Search.
  * Description: A plugin for replacing WordPress default search with Google Custom Search results.
  * Version:     1.0
- * Author:      rtCamp, kiranpotphode
+ * Author:      rtCamp
  * Author URI:  https://rtCamp.com
  * License:     GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
