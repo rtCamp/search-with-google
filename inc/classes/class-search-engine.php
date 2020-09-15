@@ -2,7 +2,7 @@
 /**
  * Register Search_Engine class functionality.
  *
- * @package google-custom-search
+ * @package search-with-google
  */
 
 namespace RT\Google_Custom_Search\Inc;
@@ -12,7 +12,7 @@ use \RT\Google_Custom_Search\Inc\Traits\Singleton;
 /**
  * Class Search_Engine.
  *
- * @package google-custom-search
+ * @package search-with-google
  */
 class Search_Engine {
 
@@ -98,7 +98,7 @@ class Search_Engine {
 		if ( 200 !== $response_code && ! empty( $response_message ) ) {
 			return new \WP_Error( $response_code, $response_message );
 		} elseif ( 200 !== $response_code ) {
-			return new \WP_Error( $response_code, __( 'Unknown error occurred', 'google-custom-search' ) );
+			return new \WP_Error( $response_code, __( 'Unknown error occurred', 'search-with-google' ) );
 		} else {
 
 			if ( ! is_wp_error( $response ) ) {
@@ -129,7 +129,7 @@ class Search_Engine {
 						}
 					}
 				} else {
-					return new \WP_Error( $response_code, __( 'Unknown error occurred', 'google-custom-search' ) );
+					return new \WP_Error( $response_code, __( 'Unknown error occurred', 'search-with-google' ) );
 				}
 			}
 		}

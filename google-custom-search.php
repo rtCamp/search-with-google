@@ -1,15 +1,15 @@
 <?php
 /**
- * Plugin Name: Google Custom Search.
+ * Plugin Name: Search with Google
  * Description: Replace WordPress default search with Google Custom Search results.
  * Version:     1.0
  * Author:      rtCamp
  * Author URI:  https://rtCamp.com
  * License:     GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: google-custom-search
+ * Text Domain: search-with-google
  *
- * @package  google-custom-search
+ * @package  search-with-google
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

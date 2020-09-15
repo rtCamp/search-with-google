@@ -2,7 +2,7 @@
 /**
  * Register plugin Functionality.
  *
- * @package google-custom-search
+ * @package search-with-google
  */
 
 namespace RT\Google_Custom_Search\Inc;
@@ -13,7 +13,7 @@ use \RT\Google_Custom_Search\Inc\Search_Engine;
 /**
  * Class Search.
  *
- * @package google-custom-search
+ * @package search-with-google
  */
 class Search {
 

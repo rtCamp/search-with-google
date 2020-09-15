@@ -2,7 +2,7 @@
 /**
  * Register plugin settings.
  *
- * @package google-custom-search
+ * @package search-with-google
  */
 
 namespace RT\Google_Custom_Search\Inc;
@@ -45,7 +45,7 @@ class Settings {
 		// Register a new section in the "reading" page.
 		add_settings_section(
 			'cse_settings_section',
-			__( 'Google Custom Search Settings', 'google-custom-search' ),
+			__( 'Google Custom Search Settings', 'search-with-google' ),
 			array( $this, 'cse_settings_section_cb' ),
 			'reading'
 		);
@@ -53,14 +53,14 @@ class Settings {
 		// Register new fields in the "cse_settings_section" section, inside the "reading" page.
 		add_settings_field(
 			'gcs_api_key',
-			__( 'API Key', 'google-custom-search' ),
+			__( 'API Key', 'search-with-google' ),
 			array( $this, 'cse_api_key_field_cb' ),
 			'reading',
 			'cse_settings_section'
 		);
 		add_settings_field(
 			'gcs_cse_id',
-			__( 'Engine ID', 'google-custom-search' ),
+			__( 'Engine ID', 'search-with-google' ),
 			array( $this, 'cse_id_field_cb' ),
 			'reading',
 			'cse_settings_section'

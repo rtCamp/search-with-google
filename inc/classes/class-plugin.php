@@ -2,7 +2,7 @@
 /**
  * Plugin manifest class.
  *
- * @package  google-custom-search
+ * @package  search-with-google
  */
 
 namespace RT\Google_Custom_Search\Inc;
