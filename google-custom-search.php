@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Google Custom Search.
- * Description: A plugin for replacing WordPress default search with Google Custom Search results.
+ * Description: Replace WordPress default search with Google Custom Search results.
  * Version:     1.0
  * Author:      rtCamp
  * Author URI:  https://rtCamp.com
