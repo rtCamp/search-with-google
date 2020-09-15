@@ -2,7 +2,7 @@
 /**
  * Autoloader file for plugin.
  *
- * @package google-custom-search
+ * @package search-with-google
  */
 
 namespace RT\Google_Custom_Search\Inc\Helpers;
