@@ -1,4 +1,4 @@
-# Google Custom Search
+# Search with Google
 
 Replace WordPress default search with Google Custom Search results.
 
@@ -34,17 +34,17 @@ This plugin will bypass the WordPress default search query with results from [Cu
 
 ### Reporting a bug 🐞
 
-Before creating a new issue, do browse through the [existing issues](https://github.com/rtCamp/google-custom-search/issues) for resolution or upcoming fixes. 
+Before creating a new issue, do browse through the [existing issues](https://github.com/rtCamp/search-with-google/issues) for resolution or upcoming fixes. 
 
-If you still need to [log an issue](https://github.com/rtCamp/google-custom-search/issues/new), making sure to include as much detail as you can, including clear steps to reproduce your issue if possible.
+If you still need to [log an issue](https://github.com/rtCamp/search-with-google/issues/new), making sure to include as much detail as you can, including clear steps to reproduce your issue if possible.
 
 ### Creating a pull request
 
-Want to contribute a new feature? Start a conversation by logging an [issue](https://github.com/rtCamp/google-custom-search/issues).
+Want to contribute a new feature? Start a conversation by logging an [issue](https://github.com/rtCamp/search-with-google/issues).
 
 Once you're ready to send a pull request, please run through the following checklist: 
 
-1. Browse through the [existing issues](https://github.com/rtCamp/google-custom-search/issues) for anything related to what you want to work on. If you don't find any related issues, open a new one.
+1. Browse through the [existing issues](https://github.com/rtCamp/search-with-google/issues) for anything related to what you want to work on. If you don't find any related issues, open a new one.
 
 1. Fork this repository.
 
