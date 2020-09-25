@@ -1,0 +1,36 @@
+{
+    "name": "rtcamp/search-with-google",
+    "description": "Replace WordPress default search with Google Custom Search results.",
+    "type": "wp-plugin",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "rtCamp",
+            "email": "contact@rtcamp.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "require-dev": {
+        "10up/wp_mock": "^0.4.2",
+        "wp-coding-standards/wpcs": "^2.3.0",
+        "automattic/vipwpcs": "^2.1.0",
+        "sirbrillig/phpcs-variable-analysis": "^2.8",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+        "phpcompatibility/php-compatibility": "^9.3.5"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "RT\\Google_Custom_Search\\Tests\\": "tests/php/"
+        },
+        "classmap": [ "inc/" ]
+    },
+    "scripts": {
+        "cs": "@php ./vendor/bin/phpcs .",
+        "tests": "@php ./vendor/bin/phpunit tests/php/Unit/",
+        "qa": [
+            "@cs",
+            "@tests"
+        ]
+    }
+}
