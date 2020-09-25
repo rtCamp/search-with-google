@@ -21,6 +21,9 @@ use ReflectionMethod;
  * @author Ankit Gade <ankit.gade@rtcamp.com>
  */
 class TestCase extends WPMockTestCase {
+
+	public $event_handler;
+
 	/**
 	 * Sets up the fixture, for example, open a network connection.
 	 * This method is called before a test is executed.

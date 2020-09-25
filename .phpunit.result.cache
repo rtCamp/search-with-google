@@ -1,1 +1,0 @@
-C:37:"PHPUnit\Runner\DefaultTestResultCache":123:{a:2:{s:7:"defects";a:0:{}s:5:"times";a:1:{s:63:"RT\Google_Custom_Search\Tests\Unit\SampleTest::testSampleMethod";d:0.045;}}}
