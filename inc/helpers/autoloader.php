@@ -5,7 +5,7 @@
  * @package search-with-google
  */
 
-namespace RT\Google_Custom_Search\Inc\Helpers;
+namespace RT\Search_With_Google\Inc\Helpers;
 
 /**
  * Auto loader function.
@@ -17,7 +17,7 @@ namespace RT\Google_Custom_Search\Inc\Helpers;
 function autoloader( $resource = '' ) {
 
 	$resource_path  = false;
-	$namespace_root = 'RT\Google_Custom_Search\\';
+	$namespace_root = 'RT\Search_With_Google\\';
 	$resource       = trim( $resource, '\\' );
 
 	if ( empty( $resource ) || strpos( $resource, '\\' ) === false || strpos( $resource, $namespace_root ) !== 0 ) {
@@ -70,7 +70,7 @@ function autoloader( $resource = '' ) {
 				break;
 		}
 
-		$resource_path = sprintf( '%s/inc/%s/%s.php', untrailingslashit( GOOGLE_CUSTOM_SEARCH_PATH ), $directory, $file_name );
+		$resource_path = sprintf( '%s/inc/%s/%s.php', untrailingslashit( SEARCH_WITH_GOOGLE_PATH ), $directory, $file_name );
 
 	}
 
@@ -83,4 +83,4 @@ function autoloader( $resource = '' ) {
 
 }
 
-spl_autoload_register( '\RT\Google_Custom_Search\Inc\Helpers\autoloader' );
+spl_autoload_register( '\RT\Search_With_Google\Inc\Helpers\autoloader' );

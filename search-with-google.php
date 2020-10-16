@@ -16,19 +16,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 	return;
 }
 
-if ( ! defined( 'GOOGLE_CUSTOM_SEARCH_PATH' ) ) {
-	define( 'GOOGLE_CUSTOM_SEARCH_PATH', __DIR__ );
+if ( ! defined( 'SEARCH_WITH_GOOGLE_PATH' ) ) {
+	define( 'SEARCH_WITH_GOOGLE_PATH', __DIR__ );
 }
 
-require_once GOOGLE_CUSTOM_SEARCH_PATH . '/inc/helpers/autoloader.php';
+require_once SEARCH_WITH_GOOGLE_PATH . '/inc/helpers/autoloader.php';
 
 /**
  * To load plugin manifest class.
  *
  * @return void
  */
-function google_custom_search_plugin_loader() {
-	\RT\Google_Custom_Search\Inc\Plugin::get_instance();
+function Search_With_Google_plugin_loader() {
+	\RT\Search_With_Google\Inc\Plugin::get_instance();
 }
 
-google_custom_search_plugin_loader();
+Search_With_Google_plugin_loader();

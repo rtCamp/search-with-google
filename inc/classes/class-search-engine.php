@@ -5,9 +5,9 @@
  * @package search-with-google
  */
 
-namespace RT\Google_Custom_Search\Inc;
+namespace RT\Search_With_Google\Inc;
 
-use \RT\Google_Custom_Search\Inc\Traits\Singleton;
+use \RT\Search_With_Google\Inc\Traits\Singleton;
 
 /**
  * Class Search_Engine.
