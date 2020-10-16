@@ -8,7 +8,7 @@ Replace WordPress default search with Google Custom Search results.
 
 **Requires at least:** 4.9
 
-**Tested up to:** 5.4
+**Tested up to:** 5.5
 
 **License:** [GPLv2 or later](http://www.gnu.org/licenses/gpl-2.0.html)
 
@@ -22,8 +22,8 @@ This plugin will bypass the WordPress default search query with results from [Cu
 - [Programmable Search engine ID](https://cse.google.com/all)
 
 # Setup
-- Get Google API key. An API key is a way to identify your client to Google. Read more [here](https://developers.google.com/custom-search/v1/introduction).
-- Get Programmable Search engine ID. Create one [here](https://cse.google.com/). In settings, restrict the Search engine to only search for your one site.
+- [Get Google API key](https://developers.google.com/custom-search/v1/introduction). An API key is a way to identify your client to Google.
+- [Get Programmable Search engine ID](https://cse.google.com/). In settings, restrict the Search engine to only search for your one site.
  - On WordPress dashboard, set API Key and Custom Search Engine ID in the plugin settings. `Dashboard > Settings > Reading > Search with Google Settings`.
 
 # Notes
