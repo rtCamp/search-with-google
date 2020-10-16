@@ -25,7 +25,7 @@
  * @package search-with-google
  */
 
-namespace RT\Google_Custom_Search\Inc\Traits;
+namespace RT\Search_With_Google\Inc\Traits;
 
 trait Singleton {
 
@@ -76,9 +76,9 @@ trait Singleton {
 			$instance[ $called_class ] = new $called_class();
 
 			/**
-			 * Dependent items can use the google_custom_search_singleton_init_{$called_class} hook to execute code
+			 * Dependent items can use the Search_With_Google_singleton_init_{$called_class} hook to execute code
 			 */
-			do_action( sprintf( 'google_custom_search_singleton_init_%s', $called_class ) ); // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
+			do_action( sprintf( 'Search_With_Google_singleton_init_%s', $called_class ) ); // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
 
 		}
 

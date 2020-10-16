@@ -22,7 +22,7 @@ This plugin will bypass the WordPress default search query with results from [Cu
 = Setup =
 1. Get Google API key. An API key is a way to identify your client to Google. Read more [here](https://developers.google.com/custom-search/v1/introduction).
 1. Get Programmable Search engine ID. Create one [here](https://cse.google.com/). In settings, restrict the Search engine to only search for your one site.
-1. On WordPress dashboard, set API Key and Custom Search Engine ID in the plugin settings. `Dashboard > Settings > Reading > Google Custom Search Settings`.
+1. On WordPress dashboard, set API Key and Custom Search Engine ID in the plugin settings. `Dashboard > Settings > Reading > Search with Google Settings`.
 
 = Notes =
 1. Custom Search Site Restricted JSON API can show only 100 search results for the query.

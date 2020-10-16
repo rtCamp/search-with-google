@@ -5,9 +5,9 @@
  * @package search-with-google
  */
 
-namespace RT\Google_Custom_Search\Inc;
+namespace RT\Search_With_Google\Inc;
 
-use \RT\Google_Custom_Search\Inc\Traits\Singleton;
+use \RT\Search_With_Google\Inc\Traits\Singleton;
 
 /**
  * Class Settings
@@ -45,7 +45,7 @@ class Settings {
 		// Register a new section in the "reading" page.
 		add_settings_section(
 			'cse_settings_section',
-			__( 'Google Custom Search Settings', 'search-with-google' ),
+			__( 'Search with Google Settings', 'search-with-google' ),
 			array( $this, 'cse_settings_section_cb' ),
 			'reading'
 		);
@@ -71,7 +71,6 @@ class Settings {
 	 * Settings section callback.
 	 */
 	public function cse_settings_section_cb() {
-		echo esc_html( 'Custom Search engine configurations.' );
 	}
 
 	/**
