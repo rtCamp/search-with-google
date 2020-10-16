@@ -15,7 +15,7 @@ Replace WordPress default search with Google Custom Search results.
 **Requires PHP:** 5.4+
 
 ## Description
-This plugin will bypass the WordPress default search query with results from [Custom Search Site Restricted JSON API](https://developers.google.com/custom-search/v1/site_restricted_api).
+This plugin will replace the WordPress default search query with server-side results from [Custom Search Site Restricted JSON API](https://developers.google.com/custom-search/v1/site_restricted_api).
 
 # Requirements
 - [Google API Key](https://console.developers.google.com/apis/credentials)
