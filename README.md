@@ -17,16 +17,16 @@ Replace WordPress default search with Google Custom Search results.
 ## Description
 This plugin will replace the WordPress default search query with server-side results from [Custom Search Site Restricted JSON API](https://developers.google.com/custom-search/v1/site_restricted_api).
 
-# Requirements
+## Requirements
 - [Google API Key](https://console.developers.google.com/apis/credentials)
 - [Programmable Search engine ID](https://cse.google.com/all)
 
-# Setup
+## Setup
 - [Get Google API key](https://developers.google.com/custom-search/v1/introduction). An API key is a way to identify your client to Google.
 - [Get Programmable Search engine ID](https://cse.google.com/). In settings, restrict the Search engine to only search for your one site.
  - On WordPress dashboard, set API Key and Custom Search Engine ID in the plugin settings. `Dashboard > Settings > Reading > Search with Google Settings`.
 
-# Notes
+## Notes
 - Custom Search Site Restricted JSON API can show only 100 search results for the query.
 - A result page can have maximum of 10 results.
 
@@ -56,7 +56,7 @@ Once you're ready to send a pull request, please run through the following check
 
 1. Once your pull request has passed final code review and tests, it will be merged into `develop` and be in the pipeline for the next release. Props to you! 🎉
 
-# BTW, We're Hiring!
+## BTW, We're Hiring!
 
 <a href="https://rtcamp.com/"><img src="https://rtcamp.com/wp-content/uploads/2019/04/github-banner@2x.png" alt="Join us at rtCamp, we specialize in providing high performance enterprise WordPress solutions"></a>
 
