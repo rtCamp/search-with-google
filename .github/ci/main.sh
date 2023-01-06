@@ -32,7 +32,7 @@ function create_and_configure_site () {
     rsync -azh $GITHUB_WORKSPACE/ $SITE_ROOT/wp-content/plugins/search-with-google
     echo "127.0.0.1 $SITE_NAME" >> /etc/hosts
     ls
-    wp plugin activate login-with-google --allow-root
+    wp plugin activate search-with-google --allow-root
     wp user create automation automation@example.com --role=administrator --user_pass=automation --allow-root
     wp theme activate twentytwentyone --allow-root
 }
