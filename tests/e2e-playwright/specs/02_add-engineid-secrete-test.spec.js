@@ -17,13 +17,14 @@ test.describe("Add the API key and engine ID", () => {
     ).toHaveText("Search with Google Settings");
 
     await page.click("input[name='gcs_api_key']", {clickCount: 3}); // Clear the input before adding the value. 
-    await page.type( "input[name='gcs_api_key']", process.env.API_KEY );
+    await page.type( "input[name='gcs_api_key']", 'AIzaSyChDe210qIAFmZdDFETyg0StBuYQEuvYsA' );
 
     await page.click("input[name='gcs_cse_id']", {clickCount: 3}); // Clear the input before adding the value. 
-    await page.type( "input[name='gcs_cse_id']", process.env.ENGINE_ID );
+    await page.type( "input[name='gcs_cse_id']", '421ea2286366b4d38' );
 
     await page.click( 'role=button[name="Save Changes"i]' );
 
+    await page.waitForTimeout(6000);
     expect(page.locator( "div[id='setting-error-settings_updated'] p strong" )).toHaveText( 'Settings saved.' )
     
   });

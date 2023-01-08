@@ -12,6 +12,7 @@ test.describe("Validate the pagination", () => {
     await admin.visitAdminPage("/");
     await page.goto(WP_BASE_URL + "/?s=migration");
 
+    await page.waitForTimeout(4000);
     expect(page.locator(".alignwide.wp-block-query-title")).toHaveText(
       "Search results for: “migration”"
     );

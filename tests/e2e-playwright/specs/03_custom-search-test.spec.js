@@ -12,6 +12,8 @@ test.describe("Validate the custom search", () => {
     await admin.visitAdminPage("/");
     await page.goto(WP_BASE_URL + "/?s=migration");
 
+    await page.waitForTimeout(9000);
+    await page.screenshot({ path: "uploads/migration.png" });
     expect(page.locator(".alignwide.wp-block-query-title")).toHaveText(
       "Search results for: “migration”"
     );
