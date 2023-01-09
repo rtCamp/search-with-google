@@ -1,10 +1,10 @@
 /**
  * WordPress dependencies
  */
-const { test, expect } = require("@wordpress/e2e-test-utils-playwright");
+const { test, expect } = require( "@wordpress/e2e-test-utils-playwright");
 
-test.describe("Add the API key and engine ID", () => {
-  test("Should able to validate the API key and engine ID.", async ({ admin, page }) => {
+test.describe( "Add the API key and engine ID", () => {
+  test( "Should able to validate the API key and engine ID.", async ({ admin, page }) => {
     await admin.visitAdminPage("/");
 
     await page.hover('role=link[name="Settings"i]'); //click on settings menu.
@@ -25,7 +25,7 @@ test.describe("Add the API key and engine ID", () => {
     await page.click( 'role=button[name="Save Changes"i]' );
 
     await page.waitForTimeout(6000);
-    expect(page.locator( "div[id='setting-error-settings_updated'] p strong" )).toHaveText( 'Settings saved.' )
+    expect(page.locator( "div[id='setting-error-settings_updated'] p strong" )).toHaveText( 'Settings saved.' ) // Expect settings should be saved sucessfully. 
     
   });
 });

@@ -1,10 +1,10 @@
 /**
  * WordPress dependencies
  */
-const { test, expect } = require("@wordpress/e2e-test-utils-playwright");
+const { test, expect } = require( "@wordpress/e2e-test-utils-playwright" );
 
-test.describe("Validate the search with google settings test", () => {
-  test("Should able to validate the settings", async ({ admin, page }) => {
+test.describe( "Validate the search with google settings test", () => {
+  test( "Should able to validate the settings", async ({ admin, page }) => {
     await admin.visitAdminPage("/");
 
     await page.hover('role=link[name="Settings"i]'); //click on settings menu.
