@@ -120,8 +120,8 @@ class Search_Engine {
 						if ( ! empty( $result->items ) ) {
 							foreach ( $result->items as $item ) {
 
-								$item_detail['title']       = $item->title;
-								$item_detail['link']        = $item->link;
+								$item_detail['title']   = $item->title;
+								$item_detail['link']    = $item->link;
 								$item_detail['snippet'] = $item->snippet;
 
 								$item_details[] = $item_detail;
