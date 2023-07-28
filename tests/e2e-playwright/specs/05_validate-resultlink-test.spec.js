@@ -3,7 +3,7 @@
  */
 const { test, expect } = require( "@wordpress/e2e-test-utils-playwright" );
 const { WP_BASE_URL } = require( "../e2e-test-utils-playwright/src/config" );
-
+const { commonFunction } = require( "../page/CommonFunction" )
 
 test.describe( "Validate the search result link", () => {
   test( "Should able to validate the results link", async ({
@@ -11,13 +11,9 @@ test.describe( "Validate the search result link", () => {
     page,
   }) => {
     await admin.visitAdminPage("/");
-    await page.goto(WP_BASE_URL + "/?s=migration");
+    const commonfunction = new commonFunction(page)
+    await commonfunction.search();
 
-    await page.waitForTimeout(4000);
-    expect(page.locator(".alignwide.wp-block-query-title")).toHaveText(
-      "Search results for: “migration”"
-    );
-    
     // Click on search result. 
     await page.locator(
       ".wp-block-post-title > a"
