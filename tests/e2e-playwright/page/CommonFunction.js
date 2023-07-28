@@ -1,6 +1,6 @@
 import { expect } from "@playwright/test";
 import { selectors } from "../utils/selectors";
-
+import { WP_BASE_URL} from '../e2e-test-utils-playwright/src/config'
 export class commonFunction {
 
     constructor(page) {
@@ -15,7 +15,7 @@ export class commonFunction {
         await this.page.waitForTimeout(2000);
     
         await expect(
-          page.locator(selectors.searchWithGoogleHeading)
+          this.page.locator(selectors.searchWithGoogleHeading)
         ).toHaveText("Search with Google Settings");
 
     }
