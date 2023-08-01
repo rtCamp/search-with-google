@@ -3,6 +3,8 @@
  */
 const { test, expect } = require( "@wordpress/e2e-test-utils-playwright" );
 const { WP_BASE_URL } = require( "../e2e-test-utils-playwright/src/config" );
+const { commonFunction } = require( "../page/CommonFunction" )
+
 
 test.describe( "Validate the custom search", () => {
   test( "Should able to get the result for the custom search", async ({
@@ -10,13 +12,8 @@ test.describe( "Validate the custom search", () => {
     page,
   }) => {
     await admin.visitAdminPage("/");
-    await page.goto(WP_BASE_URL + "/?s=migration");
-
-    await page.waitForTimeout(9000);
-    await page.screenshot({ path: "uploads/migration.png" });
-    expect(page.locator(".alignwide.wp-block-query-title")).toHaveText(
-      "Search results for: “migration”"
-    );
+    const commonfunction = new commonFunction(page)
+    await commonfunction.search();
 
     // Expect post title should not be null.
     expect(
