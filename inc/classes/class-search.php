@@ -126,21 +126,21 @@ class Search {
 	 */
 	public function get_post( $item ) {
 
-		$post_id              = - wp_rand( 1, 99999 ); // Negative ID, to avoid clash with a valid post.
-		$post                 = new \stdClass();
-		$post->ID             = $post_id;
-		$post->post_author    = 1;
-		$post->post_date      = current_time( 'mysql' );
-		$post->post_date_gmt  = current_time( 'mysql', 1 );
-		$post->post_title     = $item['title'];
-		$post->post_content   = $item['snippet'];
-		$post->post_status    = 'publish';
-		$post->comment_status = 'closed';
-		$post->ping_status    = 'closed';
-		$post->post_name      = $this->get_post_name( $item['link'] ); // Get post slug from URL.
+		$post_id                = - wp_rand( 1, 99999 ); // Negative ID, to avoid clash with a valid post.
+		$post                   = new \stdClass();
+		$post->ID               = $post_id;
+		$post->post_author      = 1;
+		$post->post_date        = current_time( 'mysql' );
+		$post->post_date_gmt    = current_time( 'mysql', 1 );
+		$post->post_title       = $item['title'];
+		$post->post_content     = $item['snippet'];
+		$post->post_status      = 'publish';
+		$post->comment_status   = 'closed';
+		$post->ping_status      = 'closed';
+		$post->post_name        = $this->get_post_name( $item['link'] ); // Get post slug from URL.
 		$post->search_permalink = $item['link']; // Get post permalink from URL. This will replace the WP default permalink.
-		$post->post_type      = 'page';
-		$post->filter         = 'raw'; // Important!
+		$post->post_type        = 'page';
+		$post->filter           = 'raw'; // Important!
 
 		// Convert to WP_Post object.
 		$wp_post = new \WP_Post( $post );
@@ -173,7 +173,7 @@ class Search {
 	public function update_permalink( $permalink, $post ) {
 		$post = get_post( $post );
 
-		if ( ! empty( $post->search_permalink )  ) {
+		if ( ! empty( $post->search_permalink ) ) {
 			return $post->search_permalink;
 		}
 
