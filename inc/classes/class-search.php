@@ -7,13 +7,10 @@
 
 namespace RT\Search_With_Google\Inc;
 
-use \RT\Search_With_Google\Inc\Traits\Singleton;
-use \RT\Search_With_Google\Inc\Search_Engine;
+use RT\Search_With_Google\Inc\Traits\Singleton;
 
 /**
  * Class Search.
- *
- * @package search-with-google
  */
 class Search {
 
@@ -23,30 +20,35 @@ class Search {
 	 * Construct method.
 	 */
 	protected function __construct() {
+
 		$this->setup_hooks();
+
 	}
 
 	/**
 	 * Action / Filters to be declare here.
+	 *
+	 * @return void
 	 */
-	protected function setup_hooks() {
+	protected function setup_hooks(): void {
 
 		/**
 		 * Filters.
 		 */
 		add_filter( 'posts_pre_query', array( $this, 'filter_search_query' ), 10, 2 );
 		add_filter( 'page_link', array( $this, 'update_permalink' ), 10, 2 );
+
 	}
 
 	/**
 	 * Filter the WP Search query to get results from Custom Search Engine.
 	 *
-	 * @param array     $posts Posts array.
-	 * @param \WP_Query $query WP query.
+	 * @param \WP_Post[]|int[]|null $posts Posts array.
+	 * @param \WP_Query             $query WP query.
 	 *
-	 * @return mixed Modified posts.
+	 * @return array|null Modified posts.
 	 */
-	public function filter_search_query( $posts, $query ) {
+	public function filter_search_query( array|null $posts, \WP_Query $query ): array|null {
 
 		if ( ! $query->is_search || is_admin() ) {
 			return $posts;
@@ -83,19 +85,22 @@ class Search {
 		$query->max_num_pages = intval( floor( $query->found_posts / $posts_per_page ) );
 
 		return $posts;
+
 	}
 
 	/**
 	 * Get transients key based on search query and page.
 	 *
-	 * @param string $search_query Search query.
-	 * @param int    $page Page.
+	 * @param string $search_query   Search query.
+	 * @param int    $page           Page.
 	 * @param int    $posts_per_page Posts per page.
 	 *
 	 * @return string
 	 */
-	public function get_transient_key( $search_query, $page, $posts_per_page ) {
+	public function get_transient_key( string $search_query, int $page, int $posts_per_page ): string {
+
 		return 'gcs_results_' . sanitize_title( $search_query ) . '_' . $page . '_' . $posts_per_page;
+
 	}
 
 	/**
@@ -105,7 +110,8 @@ class Search {
 	 *
 	 * @return array
 	 */
-	public function get_posts( $items ) {
+	public function get_posts( array $items ): array {
+
 		$posts = array();
 
 		if ( ! empty( $items ) ) {
@@ -115,6 +121,7 @@ class Search {
 		}
 
 		return $posts;
+
 	}
 
 	/**
@@ -124,28 +131,27 @@ class Search {
 	 *
 	 * @return \WP_Post
 	 */
-	public function get_post( $item ) {
+	public function get_post( array $item ): \WP_Post {
 
-		$post_id              = - wp_rand( 1, 99999 ); // Negative ID, to avoid clash with a valid post.
-		$post                 = new \stdClass();
-		$post->ID             = $post_id;
-		$post->post_author    = 1;
-		$post->post_date      = current_time( 'mysql' );
-		$post->post_date_gmt  = current_time( 'mysql', 1 );
-		$post->post_title     = $item['title'];
-		$post->post_content   = $item['snippet'];
-		$post->post_status    = 'publish';
-		$post->comment_status = 'closed';
-		$post->ping_status    = 'closed';
-		$post->post_name      = $this->get_post_name( $item['link'] ); // Get post slug from URL.
+		$post_id                = - wp_rand( 1, 99999 ); // Negative ID, to avoid clash with a valid post.
+		$post                   = new \stdClass();
+		$post->ID               = $post_id;
+		$post->post_author      = 1;
+		$post->post_date        = current_time( 'mysql' );
+		$post->post_date_gmt    = current_time( 'mysql', 1 );
+		$post->post_title       = $item['title'];
+		$post->post_content     = $item['snippet'];
+		$post->post_status      = 'publish';
+		$post->comment_status   = 'closed';
+		$post->ping_status      = 'closed';
+		$post->post_name        = $this->get_post_name( $item['link'] ); // Get post slug from URL.
 		$post->search_permalink = $item['link']; // Get post permalink from URL. This will replace the WP default permalink.
-		$post->post_type      = 'page';
-		$post->filter         = 'raw'; // Important!
+		$post->post_type        = 'page';
+		$post->filter           = 'raw'; // Important!
 
 		// Convert to WP_Post object.
-		$wp_post = new \WP_Post( $post );
+		return new \WP_Post( $post );
 
-		return $wp_post;
 	}
 
 	/**
@@ -155,28 +161,31 @@ class Search {
 	 *
 	 * @return string
 	 */
-	public function get_post_name( $url ) {
+	public function get_post_name( string $url ): string {
 
 		$url_parse = wp_parse_url( $url );
 
 		return ltrim( $url_parse['path'], '/' );
+
 	}
 
 	/**
 	 * Set Permalink of search result from Custom search results.
 	 *
 	 * @param string $permalink Page URL.
-	 * @param string $post Post ID.
+	 * @param int    $post_id   Post ID.
 	 *
 	 * @return string Updated permalink.
 	 */
-	public function update_permalink( $permalink, $post ) {
-		$post = get_post( $post );
+	public function update_permalink( string $permalink, int $post_id ): string {
 
-		if ( ! empty( $post->search_permalink )  ) {
+		$post = get_post( $post_id );
+
+		if ( ! empty( $post->search_permalink ) ) {
 			return $post->search_permalink;
 		}
 
 		return $permalink;
+
 	}
 }

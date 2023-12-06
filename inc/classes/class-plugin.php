@@ -2,12 +2,12 @@
 /**
  * Plugin manifest class.
  *
- * @package  search-with-google
+ * @package search-with-google
  */
 
 namespace RT\Search_With_Google\Inc;
 
-use \RT\Search_With_Google\Inc\Traits\Singleton;
+use RT\Search_With_Google\Inc\Traits\Singleton;
 
 /**
  * Class Plugin
@@ -24,6 +24,7 @@ class Plugin {
 		// Load plugin classes.
 		Settings::get_instance();
 		Search::get_instance();
+
 	}
 
 }

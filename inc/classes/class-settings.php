@@ -7,7 +7,7 @@
 
 namespace RT\Search_With_Google\Inc;
 
-use \RT\Search_With_Google\Inc\Traits\Singleton;
+use RT\Search_With_Google\Inc\Traits\Singleton;
 
 /**
  * Class Settings
@@ -20,25 +20,34 @@ class Settings {
 	 * Construct method.
 	 */
 	protected function __construct() {
+
 		$this->setup_hooks();
+
 	}
 	/**
 	 * Action / Filters to be declare here.
+	 *
+	 * @return void
 	 */
-	protected function setup_hooks() {
+	protected function setup_hooks(): void {
 
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
+
 	}
 
 	/**
 	 * Register Plugin settings.
+	 *
+	 * @return void
 	 */
-	public function register_settings() {
+	public function register_settings(): void {
+
 		$args = array(
 			'type'              => 'string',
 			'sanitize_callback' => 'sanitize_text_field',
 			'default'           => null,
 		);
+
 		register_setting( 'reading', 'gcs_api_key', $args );
 		register_setting( 'reading', 'gcs_cse_id', $args );
 
@@ -65,18 +74,23 @@ class Settings {
 			'reading',
 			'cse_settings_section'
 		);
+
 	}
 
 	/**
 	 * Settings section callback.
+	 *
+	 * @return void
 	 */
-	public function cse_settings_section_cb() {
+	public function cse_settings_section_cb(): void {
 	}
 
 	/**
 	 * API Key field markup.
+	 *
+	 * @return void
 	 */
-	public function cse_api_key_field_cb() {
+	public function cse_api_key_field_cb(): void {
 		// Get the value of the setting we've registered with register_setting().
 		$setting = get_option( 'gcs_api_key' );
 		// Output the field.
@@ -87,8 +101,10 @@ class Settings {
 
 	/**
 	 * Engine ID field markup.
+	 *
+	 * @return void
 	 */
-	public function cse_id_field_cb() {
+	public function cse_id_field_cb(): void {
 		// Get the value of the setting we've registered with register_setting().
 		$setting = get_option( 'gcs_cse_id' );
 		// Output the field.
