@@ -88,12 +88,21 @@ class Search_Engine {
 			$request_url = add_query_arg( array( 'start' => $start ), $request_url );
 		}
 
-		$response = wp_remote_get(
-			$request_url,
-			array(
-				'timeout' => 120,
-			)
-		);
+		if ( function_exists( 'vip_safe_wp_remote_get') ) {
+			$response = vip_safe_wp_remote_get(
+				$request_url, // URL.
+				new \WP_Error( 'google_api_error', __( 'Unknown error occurred', 'search-with-google' ) ), // Fallback value.
+				3, // Threshold.
+				120 // Timeout.
+			);
+		} else {
+			$response = wp_remote_get( // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.wp_remote_get_wp_remote_get -- Using this function if vip_safe_wp_remote_get function not available.
+				$request_url,
+				array(
+					'timeout' => 120, // phpcs:ignore WordPressVIPMinimum.Performance.RemoteRequestTimeout.timeout_timeout -- External API request.
+				)
+			);
+		}
 
 		// Check the response code.
 		$response_code    = wp_remote_retrieve_response_code( $response );
