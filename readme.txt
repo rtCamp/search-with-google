@@ -69,6 +69,12 @@ Once you're ready to send a pull request, please run through the following check
 = 1.0 =
 * Initial release.
 
+= 1.1 =
+* Updated PHP code to be compatible with PHP 8.0+
+* Fixed WordPress coding standards issues
+* Used VIP compatible code for WordPress VIP compatibility
+
+
 == Upgrade Notice ==
  
 = 1.0 =
