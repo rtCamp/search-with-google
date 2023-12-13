@@ -7,7 +7,7 @@
 
 namespace RT\Search_With_Google\Inc;
 
-use \RT\Search_With_Google\Inc\Traits\Singleton;
+use RT\Search_With_Google\Inc\Traits\Singleton;
 
 /**
  * Class Notice
