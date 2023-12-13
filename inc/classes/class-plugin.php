@@ -24,6 +24,7 @@ class Plugin {
 		// Load plugin classes.
 		Settings::get_instance();
 		Search::get_instance();
+		Notice::get_instance();
 
 	}
 
