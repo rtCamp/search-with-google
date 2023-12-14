@@ -9,7 +9,7 @@
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: search-with-google
  *
- * @package  search-with-google
+ * @package search-with-google
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -27,8 +27,8 @@ require_once SEARCH_WITH_GOOGLE_PATH . '/inc/helpers/autoloader.php';
  *
  * @return void
  */
-function Search_With_Google_plugin_loader() {
+function search_with_google_plugin_loader(): void {
 	\RT\Search_With_Google\Inc\Plugin::get_instance();
 }
 
-Search_With_Google_plugin_loader();
+search_with_google_plugin_loader();
