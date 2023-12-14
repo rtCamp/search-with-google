@@ -12,7 +12,7 @@ Replace WordPress default search with Google Custom Search results.
 
 **License:** [GPLv2 or later](http://www.gnu.org/licenses/gpl-2.0.html)
 
-**Requires PHP:** 5.4+
+**Requires PHP:** 8.0+
 
 ## Description
 This plugin will replace the WordPress default search query with server-side results from [Custom Search Site Restricted JSON API](https://developers.google.com/custom-search/v1/site_restricted_api).

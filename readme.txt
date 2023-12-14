@@ -5,7 +5,7 @@ Tags: google, search, cse, custom search engine, programmable search, programmab
 Requires at least: 4.8
 Tested up to: 5.5
 Stable tag: 1.0
-Requires PHP: 7.0
+Requires PHP: 8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -68,6 +68,12 @@ Once you're ready to send a pull request, please run through the following check
 
 = 1.0 =
 * Initial release.
+
+= 1.1 =
+* Updated PHP code to be compatible with PHP 8.0+
+* Fixed WordPress coding standards issues
+* Used VIP compatible code for WordPress VIP compatibility
+
 
 == Upgrade Notice ==
  

@@ -7,12 +7,10 @@
 
 namespace RT\Search_With_Google\Inc;
 
-use \RT\Search_With_Google\Inc\Traits\Singleton;
+use RT\Search_With_Google\Inc\Traits\Singleton;
 
 /**
  * Class Search_Engine.
- *
- * @package search-with-google
  */
 class Search_Engine {
 
@@ -30,40 +28,46 @@ class Search_Engine {
 	 *
 	 * @var string
 	 */
-	private $api_key = '';
+	private string $api_key = '';
 
 	/**
 	 * Custom Search Engine ID.
 	 *
 	 * @var string
 	 */
-	private $cse_id = '';
+	private string $cse_id = '';
 
 	/**
 	 * Construct method.
 	 */
 	protected function __construct() {
+
 		$this->init();
+
 	}
 
 	/**
 	 * Action / Filters to be declare here.
+	 *
+	 * @return void
 	 */
-	protected function init() {
+	protected function init(): void {
+
 		$this->api_key = get_option( 'gcs_api_key' );
 		$this->cse_id  = get_option( 'gcs_cse_id' );
+
 	}
 
 	/**
 	 * Get search results from the Custom Search Engine.
 	 *
-	 * @param string $search_query Search Query.
-	 * @param int    $page Page number.
+	 * @param string $search_query   Search Query.
+	 * @param int    $page           Page number.
 	 * @param int    $posts_per_page Items per request.
 	 *
 	 * @return array|\WP_Error Posts or false if empty or error.
 	 */
-	public function get_search_results( $search_query, $page = 1, $posts_per_page = 10 ) {
+	public function get_search_results( string $search_query, int $page = 1, int $posts_per_page = 10 ): \WP_Error|array {
 
 		$item_details  = array();
 		$total_results = 0;
@@ -84,12 +88,21 @@ class Search_Engine {
 			$request_url = add_query_arg( array( 'start' => $start ), $request_url );
 		}
 
-		$response = wp_remote_get(
-			$request_url,
-			array(
-				'timeout' => 120,
-			)
-		);
+		if ( function_exists( 'vip_safe_wp_remote_get') ) {
+			$response = vip_safe_wp_remote_get(
+				$request_url, // URL.
+				new \WP_Error( 'google_api_error', __( 'Unknown error occurred', 'search-with-google' ) ), // Fallback value.
+				3, // Threshold.
+				120 // Timeout.
+			);
+		} else {
+			$response = wp_remote_get( // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.wp_remote_get_wp_remote_get -- Using this function if vip_safe_wp_remote_get function not available.
+				$request_url,
+				array(
+					'timeout' => 120, // phpcs:ignore WordPressVIPMinimum.Performance.RemoteRequestTimeout.timeout_timeout -- External API request.
+				)
+			);
+		}
 
 		// Check the response code.
 		$response_code    = wp_remote_retrieve_response_code( $response );
@@ -108,9 +121,9 @@ class Search_Engine {
 
 				if ( ! is_wp_error( $result ) ) {
 
-					if ( isset( $result->searchInformation->totalResults ) && isset( $result->items ) ) {
+					if ( isset( $result->searchInformation->totalResults ) && isset( $result->items ) ) { // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 
-						$total_results = (int) $result->searchInformation->totalResults;
+						$total_results = (int) $result->searchInformation->totalResults; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 
 						// If no results found and pagination request then try another request.
 						if ( 0 === $total_results && $page > 1 ) {
@@ -120,8 +133,8 @@ class Search_Engine {
 						if ( ! empty( $result->items ) ) {
 							foreach ( $result->items as $item ) {
 
-								$item_detail['title']       = $item->title;
-								$item_detail['link']        = $item->link;
+								$item_detail['title']   = $item->title;
+								$item_detail['link']    = $item->link;
 								$item_detail['snippet'] = $item->snippet;
 
 								$item_details[] = $item_detail;
@@ -143,13 +156,14 @@ class Search_Engine {
 	/**
 	 * Calculate start index for Custom Search Engine.
 	 *
-	 * @param int $page Page number of results.
+	 * @param int $page           Page number of results.
 	 * @param int $posts_per_page Results per page.
 	 *
 	 * @return float|int
 	 */
-	public function get_start_index( $page, $posts_per_page ) {
+	public function get_start_index( int $page, int $posts_per_page ): float|int {
 
 		return ( $page * $posts_per_page ) - ( $posts_per_page - 1 );
+
 	}
 }
