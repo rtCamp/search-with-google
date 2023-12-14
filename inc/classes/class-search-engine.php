@@ -88,7 +88,7 @@ class Search_Engine {
 			$request_url = add_query_arg( array( 'start' => $start ), $request_url );
 		}
 
-		if ( function_exists( 'vip_safe_wp_remote_get') ) {
+		if ( function_exists( 'vip_safe_wp_remote_get' ) ) {
 			$response = vip_safe_wp_remote_get(
 				$request_url, // URL.
 				new \WP_Error( 'google_api_error', __( 'Unknown error occurred', 'search-with-google' ) ), // Fallback value.
