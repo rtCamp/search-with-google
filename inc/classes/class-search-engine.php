@@ -28,14 +28,14 @@ class Search_Engine {
 	 *
 	 * @var string
 	 */
-	private string $api_key = '';
+	private $api_key = '';
 
 	/**
 	 * Custom Search Engine ID.
 	 *
 	 * @var string
 	 */
-	private string $cse_id = '';
+	private $cse_id = '';
 
 	/**
 	 * Construct method.
@@ -51,7 +51,7 @@ class Search_Engine {
 	 *
 	 * @return void
 	 */
-	protected function init(): void {
+	protected function init() {
 
 		$this->api_key = get_option( 'gcs_api_key' );
 		$this->cse_id  = get_option( 'gcs_cse_id' );
@@ -67,7 +67,7 @@ class Search_Engine {
 	 *
 	 * @return array|\WP_Error Posts or false if empty or error.
 	 */
-	public function get_search_results( string $search_query, int $page = 1, int $posts_per_page = 10 ): \WP_Error|array {
+	public function get_search_results( $search_query, $page = 1, $posts_per_page = 10 ) {
 
 		$item_details  = array();
 		$total_results = 0;
@@ -161,7 +161,7 @@ class Search_Engine {
 	 *
 	 * @return float|int
 	 */
-	public function get_start_index( int $page, int $posts_per_page ): float|int {
+	public function get_start_index( $page, $posts_per_page ) {
 
 		return ( $page * $posts_per_page ) - ( $posts_per_page - 1 );
 

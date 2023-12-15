@@ -29,7 +29,7 @@ class Settings {
 	 *
 	 * @return void
 	 */
-	protected function setup_hooks(): void {
+	protected function setup_hooks() {
 
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
 
@@ -40,7 +40,7 @@ class Settings {
 	 *
 	 * @return void
 	 */
-	public function register_settings(): void {
+	public function register_settings() {
 
 		$args = array(
 			'type'              => 'string',
@@ -82,7 +82,7 @@ class Settings {
 	 *
 	 * @return void
 	 */
-	public function cse_settings_section_cb(): void {
+	public function cse_settings_section_cb() {
 	}
 
 	/**
@@ -90,7 +90,7 @@ class Settings {
 	 *
 	 * @return void
 	 */
-	public function cse_api_key_field_cb(): void {
+	public function cse_api_key_field_cb() {
 		// Get the value of the setting we've registered with register_setting().
 		$setting = get_option( 'gcs_api_key' );
 		// Output the field.
@@ -104,7 +104,7 @@ class Settings {
 	 *
 	 * @return void
 	 */
-	public function cse_id_field_cb(): void {
+	public function cse_id_field_cb() {
 		// Get the value of the setting we've registered with register_setting().
 		$setting = get_option( 'gcs_cse_id' );
 		// Output the field.

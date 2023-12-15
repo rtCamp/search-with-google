@@ -14,7 +14,7 @@ namespace RT\Search_With_Google\Inc\Helpers;
  *
  * @return void
  */
-function autoloader( string $resource = '' ): void {
+function autoloader( $resource = '' ) {
 
 	$resource_path  = false;
 	$namespace_root = 'RT\Search_With_Google\\';
