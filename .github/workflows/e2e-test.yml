@@ -58,11 +58,11 @@ jobs:
         with:
           name: report
           path: ./tests/e2e-playwright/uploads
-
-      - name: run PR status
-        if: ${{ always() }}
-        run: node ./tests/e2e-playwright/bin/pr-status.js
-        working-directory: ${{env.working_directory}}
+      # As the results are currently not displaying on tesults. Once this issue is resolved, please uncomment it.
+      # - name: run PR status
+      #   if: ${{ always() }}
+      #   run: node ./tests/e2e-playwright/bin/pr-status.js
+      #   working-directory: ${{env.working_directory}}
 
       - name: Cleanup
         if: ${{ always() }}
