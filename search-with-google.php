@@ -27,7 +27,7 @@ require_once SEARCH_WITH_GOOGLE_PATH . '/inc/helpers/autoloader.php';
  *
  * @return void
  */
-function search_with_google_plugin_loader(): void {
+function search_with_google_plugin_loader() {
 	\RT\Search_With_Google\Inc\Plugin::get_instance();
 }
 

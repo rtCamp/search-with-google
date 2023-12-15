@@ -30,7 +30,7 @@ class Search {
 	 *
 	 * @return void
 	 */
-	protected function setup_hooks(): void {
+	protected function setup_hooks() {
 
 		/**
 		 * Filters.
@@ -48,7 +48,7 @@ class Search {
 	 *
 	 * @return array|null Modified posts.
 	 */
-	public function filter_search_query( array|null $posts, \WP_Query $query ): array|null {
+	public function filter_search_query( $posts, $query ) {
 
 		if ( ! $query->is_search || is_admin() ) {
 			return $posts;
@@ -97,7 +97,7 @@ class Search {
 	 *
 	 * @return string
 	 */
-	public function get_transient_key( string $search_query, int $page, int $posts_per_page ): string {
+	public function get_transient_key( $search_query, $page, $posts_per_page ) {
 
 		return 'gcs_results_' . sanitize_title( $search_query ) . '_' . $page . '_' . $posts_per_page;
 
@@ -110,7 +110,7 @@ class Search {
 	 *
 	 * @return array
 	 */
-	public function get_posts( array $items ): array {
+	public function get_posts( $items ) {
 
 		$posts = array();
 
@@ -131,7 +131,7 @@ class Search {
 	 *
 	 * @return \WP_Post
 	 */
-	public function get_post( array $item ): \WP_Post {
+	public function get_post( $item ) {
 
 		$post_id                = - wp_rand( 1, 99999 ); // Negative ID, to avoid clash with a valid post.
 		$post                   = new \stdClass();
@@ -161,7 +161,7 @@ class Search {
 	 *
 	 * @return string
 	 */
-	public function get_post_name( string $url ): string {
+	public function get_post_name( $url ) {
 
 		$url_parse = wp_parse_url( $url );
 
@@ -177,7 +177,7 @@ class Search {
 	 *
 	 * @return string Updated permalink.
 	 */
-	public function update_permalink( string $permalink, int $post_id ): string {
+	public function update_permalink( $permalink, $post_id ) {
 
 		$post = get_post( $post_id );
 
