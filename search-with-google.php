@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Search with Google
  * Description: Replace WordPress default search with Google Custom Search results.
- * Version:     1.0
+ * Version:     1.1
  * Author:      rtCamp
  * Author URI:  https://rtCamp.com
  * License:     GPLv2 or later
@@ -18,6 +18,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! defined( 'SEARCH_WITH_GOOGLE_PATH' ) ) {
 	define( 'SEARCH_WITH_GOOGLE_PATH', __DIR__ );
+}
+
+if ( ! defined( 'SEARCH_WITH_GOOGLE_URL' ) ) {
+	define( 'SEARCH_WITH_GOOGLE_URL', plugins_url( '', __FILE__ ) );
 }
 
 require_once SEARCH_WITH_GOOGLE_PATH . '/inc/helpers/autoloader.php';
