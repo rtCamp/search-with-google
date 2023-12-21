@@ -170,7 +170,7 @@ class Search_Engine {
 		$search_type = get_option( 'gcs_search_type' );
 		$api_url     = 'https://www.googleapis.com/customsearch/v1/siterestrict';
 
-		if ( ! empty( $search_type ) ) {
+		if ( '1' === $search_type ) {
 			$api_url = 'https://www.googleapis.com/customsearch/v1';
 		}
 

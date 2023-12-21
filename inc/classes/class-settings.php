@@ -129,21 +129,24 @@ class Settings {
 	 * @return void
 	 */
 	public function cse_search_type_field_cb() {
+
 		// Get the value of the setting we've registered with register_setting().
 		$setting = get_option( 'gcs_search_type' );
+
 		// Add slider toggle switch.
 		?>
 		<div class="switch-wrapper">
 			<span><?php esc_html_e( 'Custom Site Restricted Search API', 'search-with-google' ); ?></span>
 
 			<label class="switch">
-				<input id="search-type" type="checkbox" name="gcs_search_type" value="1" <?php echo ! empty( $setting ) ? 'checked' : ''; ?>>
+				<input id="search-type" type="checkbox" name="gcs_search_type" value="1" <?php checked( $setting, '1' ); ?>>
 				<span class="slider"></span>
 			</label>
 
 			<span><?php esc_html_e( 'Custom Search API', 'search-with-google' ); ?></span>
 		</div>
 		<?php
+
 	}
 }
 
