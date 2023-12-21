@@ -17,13 +17,6 @@ class Search_Engine {
 	use Singleton;
 
 	/**
-	 * Custom Search Site Restricted JSON API URL.
-	 *
-	 * @var string
-	 */
-	const GOOGLE_API_URL = 'https://customsearch.googleapis.com/customsearch/v1/siterestrict';
-
-	/**
 	 * API Key.
 	 *
 	 * @var string
@@ -80,7 +73,7 @@ class Search_Engine {
 				'q'   => rawurlencode( $search_query ),
 				'num' => $posts_per_page,
 			),
-			self::GOOGLE_API_URL
+			$this->get_api_url()
 		);
 
 		if ( $page > 1 ) {
@@ -164,6 +157,24 @@ class Search_Engine {
 	public function get_start_index( $page, $posts_per_page ) {
 
 		return ( $page * $posts_per_page ) - ( $posts_per_page - 1 );
+
+	}
+
+	/**
+	 * Get API URL.
+	 *
+	 * @return string
+	 */
+	private function get_api_url() {
+
+		$search_type = get_option( 'gcs_search_type' );
+		$api_url     = 'https://www.googleapis.com/customsearch/v1/siterestrict';
+
+		if ( '1' === $search_type ) {
+			$api_url = 'https://www.googleapis.com/customsearch/v1';
+		}
+
+		return $api_url;
 
 	}
 }
