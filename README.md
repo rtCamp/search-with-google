@@ -6,7 +6,7 @@ Replace WordPress default search with Google Custom Search results.
 
 **Tags:** google, search, cse, custom search engine, programmable search, programmable search engine, google cse, google custom search engine, google programmable search, google programmable search engine, google search
 
-**Requires at least:** 4.9
+**Requires at least:** 4.8
 
 **Tested up to:** 6.4.2
 
