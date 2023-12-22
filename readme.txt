@@ -70,6 +70,7 @@ Once you're ready to send a pull request, please run through the following check
 == Changelog ==
 
 = 1.1 =
+* Compatible with WordPress 6.4.2
 * Updated PHP code to be compatible with PHP 8.2
 * Fixed WordPress coding standards issues
 * Used VIP compatible code for WordPress VIP compatibility
@@ -83,6 +84,7 @@ Once you're ready to send a pull request, please run through the following check
 == Upgrade Notice ==
 
 = 1.1 =
+* Compatible with WordPress 6.4.2
 * Updated PHP code to be compatible with PHP 8.2
 * Fixed WordPress coding standards issues
 * Used VIP compatible code for WordPress VIP compatibility
