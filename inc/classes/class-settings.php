@@ -50,6 +50,7 @@ class Settings {
 
 		register_setting( 'reading', 'gcs_api_key', $args );
 		register_setting( 'reading', 'gcs_cse_id', $args );
+		register_setting( 'reading', 'gcs_search_type', $args );
 
 		// Register a new section in the "reading" page.
 		add_settings_section(
@@ -71,6 +72,15 @@ class Settings {
 			'gcs_cse_id',
 			__( 'Engine ID', 'search-with-google' ),
 			array( $this, 'cse_id_field_cb' ),
+			'reading',
+			'cse_settings_section'
+		);
+
+		// Add a new toggle setting field for selecting between custom search API and custom site-restricted search API.
+		add_settings_field(
+			'gcs_search_type',
+			__( 'Search Type', 'search-with-google' ),
+			array( $this, 'cse_search_type_field_cb' ),
 			'reading',
 			'cse_settings_section'
 		);
@@ -111,6 +121,32 @@ class Settings {
 		?>
 		<input type="text" name="gcs_cse_id" value="<?php echo ! empty( $setting ) ? esc_attr( $setting ) : ''; ?>">
 		<?php
+	}
+
+	/**
+	 * Search Type field markup.
+	 *
+	 * @return void
+	 */
+	public function cse_search_type_field_cb() {
+
+		// Get the value of the setting we've registered with register_setting().
+		$setting = get_option( 'gcs_search_type' );
+
+		// Add slider toggle switch.
+		?>
+		<div class="switch-wrapper">
+			<span><?php esc_html_e( 'Custom Site Restricted Search API', 'search-with-google' ); ?></span>
+
+			<label class="switch">
+				<input id="search-type" type="checkbox" name="gcs_search_type" value="1" <?php checked( $setting, '1' ); ?>>
+				<span class="slider"></span>
+			</label>
+
+			<span><?php esc_html_e( 'Custom Search API', 'search-with-google' ); ?></span>
+		</div>
+		<?php
+
 	}
 }
 

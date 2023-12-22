@@ -22,6 +22,7 @@ class Plugin {
 	protected function __construct() {
 
 		// Load plugin classes.
+		Assets::get_instance();
 		Settings::get_instance();
 		Search::get_instance();
 		Notice::get_instance();
