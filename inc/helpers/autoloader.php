@@ -10,15 +10,15 @@ namespace RT\Search_With_Google\Inc\Helpers;
 /**
  * Auto loader function.
  *
- * @param string $resource Source namespace.
+ * @param string $resource_path Source namespace.
  *
  * @return void
  */
-function autoloader( $resource = '' ) {
+function autoloader( $resource_path = '' ) {
 
 	$resource_path  = false;
 	$namespace_root = 'RT\Search_With_Google\\';
-	$resource       = trim( $resource, '\\' );
+	$resource       = trim( $resource_path, '\\' );
 
 	if ( empty( $resource ) || strpos( $resource, '\\' ) === false || strpos( $resource, $namespace_root ) !== 0 ) {
 		// Not our namespace, bail out.
@@ -80,7 +80,6 @@ function autoloader( $resource = '' ) {
 		// We are already making sure that the file exists and it's valid.
 		require_once( $resource_path ); // phpcs:ignore
 	}
-
 }
 
 spl_autoload_register( '\RT\Search_With_Google\Inc\Helpers\autoloader' );

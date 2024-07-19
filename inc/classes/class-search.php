@@ -22,7 +22,6 @@ class Search {
 	protected function __construct() {
 
 		$this->setup_hooks();
-
 	}
 
 	/**
@@ -37,7 +36,6 @@ class Search {
 		 */
 		add_filter( 'posts_pre_query', array( $this, 'filter_search_query' ), 10, 2 );
 		add_filter( 'page_link', array( $this, 'update_permalink' ), 10, 2 );
-
 	}
 
 	/**
@@ -85,7 +83,6 @@ class Search {
 		$query->max_num_pages = intval( floor( $query->found_posts / $posts_per_page ) );
 
 		return $posts;
-
 	}
 
 	/**
@@ -100,7 +97,6 @@ class Search {
 	public function get_transient_key( $search_query, $page, $posts_per_page ) {
 
 		return 'gcs_results_' . sanitize_title( $search_query ) . '_' . $page . '_' . $posts_per_page;
-
 	}
 
 	/**
@@ -121,7 +117,6 @@ class Search {
 		}
 
 		return $posts;
-
 	}
 
 	/**
@@ -151,7 +146,6 @@ class Search {
 
 		// Convert to WP_Post object.
 		return new \WP_Post( $post );
-
 	}
 
 	/**
@@ -166,7 +160,6 @@ class Search {
 		$url_parse = wp_parse_url( $url );
 
 		return ltrim( $url_parse['path'], '/' );
-
 	}
 
 	/**
@@ -186,6 +179,5 @@ class Search {
 		}
 
 		return $permalink;
-
 	}
 }

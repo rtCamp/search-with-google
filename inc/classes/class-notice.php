@@ -22,7 +22,6 @@ class Notice {
 	protected function __construct() {
 
 		$this->setup_hooks();
-
 	}
 
 	/**
@@ -36,7 +35,6 @@ class Notice {
 		 * Actions.
 		 */
 		add_action( 'admin_notices', array( $this, 'display_notice' ) );
-
 	}
 
 	/**
@@ -73,6 +71,5 @@ class Notice {
 			</p>
 		</div>
 		<?php
-
 	}
 }
