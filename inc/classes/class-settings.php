@@ -22,7 +22,6 @@ class Settings {
 	protected function __construct() {
 
 		$this->setup_hooks();
-
 	}
 	/**
 	 * Action / Filters to be declare here.
@@ -32,7 +31,6 @@ class Settings {
 	protected function setup_hooks() {
 
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
-
 	}
 
 	/**
@@ -84,7 +82,6 @@ class Settings {
 			'reading',
 			'cse_settings_section'
 		);
-
 	}
 
 	/**
@@ -146,7 +143,6 @@ class Settings {
 			<span><?php esc_html_e( 'Custom Search API', 'search-with-google' ); ?></span>
 		</div>
 		<?php
-
 	}
 }
 

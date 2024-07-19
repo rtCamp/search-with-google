@@ -22,7 +22,6 @@ class Assets {
 	protected function __construct() {
 
 		$this->setup_hooks();
-
 	}
 
 	/**
@@ -33,7 +32,6 @@ class Assets {
 	protected function setup_hooks() {
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_assets' ) );
-
 	}
 
 	/**
