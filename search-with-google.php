@@ -11,30 +11,32 @@
  * Requires PHP: 7.4
  * Requires at least: 4.8
  *
- * @package search-with-google
+ * @package SearchWithGoogle
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	return;
+	exit; // Exit if accessed directly.
 }
 
-if ( ! defined( 'SEARCH_WITH_GOOGLE_PATH' ) ) {
-	define( 'SEARCH_WITH_GOOGLE_PATH', __DIR__ );
-}
-
-if ( ! defined( 'SEARCH_WITH_GOOGLE_URL' ) ) {
-	define( 'SEARCH_WITH_GOOGLE_URL', plugins_url( '', __FILE__ ) );
-}
-
-require_once SEARCH_WITH_GOOGLE_PATH . '/inc/helpers/autoloader.php';
+define( 'SEARCH_WITH_GOOGLE_VERSION', '1.1' );
+define( 'SEARCH_WITH_GOOGLE_PATH', plugin_dir_path( __FILE__ ) );
+define( 'SEARCH_WITH_GOOGLE_URL', plugin_dir_url( __FILE__ ) );
 
 /**
- * To load plugin manifest class.
+ * Autoload the necessary classes.
+ */
+require_once SEARCH_WITH_GOOGLE_PATH . 'inc/helpers/autoloader.php';
+
+/**
+ * Initialize the plugin.
  *
  * @return void
  */
 function search_with_google_plugin_loader() {
-	\RT\Search_With_Google\Inc\Plugin::get_instance();
+	if ( class_exists( '\RT\Search_With_Google\Inc\Plugin' ) ) {
+		\RT\Search_With_Google\Inc\Plugin::get_instance();
+	}
 }
 
-search_with_google_plugin_loader();
+add_action( 'plugins_loaded', 'search_with_google_plugin_loader' );
+
