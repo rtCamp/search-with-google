@@ -34,7 +34,7 @@ export class commonFunction {
         await this.page.goto(WP_BASE_URL + "/?s=migration");
     
         await this.page.waitForTimeout(8000);
-        expect(this.page.locator(".alignwide.wp-block-query-title")).toHaveText(
+        expect(this.page.locator(".wp-block-query-title")).toHaveText(
           "Search results for: “migration”"
         );
     
