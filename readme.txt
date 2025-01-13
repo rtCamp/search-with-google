@@ -3,7 +3,7 @@ Contributors: rtCamp, kiranpotphode, sh4lin
 Donate link: https://rtcamp.com/
 Tags: google, search, cse, custom search engine, programmable search, programmable search engine, google cse, google custom search engine, google programmable search, google programmable search engine, google search
 Requires at least: 4.8
-Tested up to: 6.4.2
+Tested up to: 6.7.1
 Stable tag: 1.1
 Requires PHP: 7.4
 License: GPLv2 or later
