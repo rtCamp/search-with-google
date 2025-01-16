@@ -24,7 +24,7 @@ test.describe( "Validate the custom search", () => {
 
     // Expect the posts title. 
     expect(
-      page.locator('role=link[name="Migrate from any CMS to WordPress"i]')
+      page.locator('h2.wp-block-post-title >> text=Migrate from any CMS to WordPress')
     ).toHaveText("Migrate from any CMS to WordPress");
   });
 });
