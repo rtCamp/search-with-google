@@ -8,7 +8,7 @@ Replace WordPress default search with Google Custom Search results.
 
 **Requires at least:** 4.8
 
-**Tested up to:** 6.7.1`
+**Tested up to:** 6.7.1
 
 **License:** [GPLv2 or later](http://www.gnu.org/licenses/gpl-2.0.html)
 
