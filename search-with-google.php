@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Search with Google
  * Description: Replace WordPress default search with Google Custom Search results.
- * Version:     1.2.1
+ * Version:     1.2.2
  * Author:      rtCamp
  * Author URI:  https://rtCamp.com
  * License:     GPLv2 or later
