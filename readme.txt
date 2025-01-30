@@ -4,7 +4,7 @@ Donate link: https://rtcamp.com/
 Tags: google, search, cse, custom search engine, programmable search, programmable search engine, google cse, google custom search engine, google programmable search, google programmable search engine, google search
 Requires at least: 4.8
 Tested up to: 6.7.1
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -69,7 +69,7 @@ Once you're ready to send a pull request, please run through the following check
 
 == Changelog ==
 
-= 1.2.1 =
+= 1.2.2 =
 * Compatible with WordPress 6.7.1
 * Updates element selectors for automated testing
 
@@ -86,7 +86,7 @@ Once you're ready to send a pull request, please run through the following check
 
 == Upgrade Notice ==
 
-= 1.2.1 =
+= 1.2.2 =
 * Compatible with WordPress 6.7.1
 * Updates element selectors for automated testing
  
