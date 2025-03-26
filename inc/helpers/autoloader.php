@@ -80,7 +80,6 @@ function autoloader( $resource = '' ) {
 		// We are already making sure that the file exists and it's valid.
 		require_once( $resource_path ); // phpcs:ignore
 	}
-
 }
 
 spl_autoload_register( '\RT\Search_With_Google\Inc\Helpers\autoloader' );
