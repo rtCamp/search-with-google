@@ -36,7 +36,6 @@ class Search_Engine {
 	protected function __construct() {
 
 		$this->init();
-
 	}
 
 	/**
@@ -48,7 +47,6 @@ class Search_Engine {
 
 		$this->api_key = get_option( 'gcs_api_key' );
 		$this->cse_id  = get_option( 'gcs_cse_id' );
-
 	}
 
 	/**
@@ -105,38 +103,36 @@ class Search_Engine {
 			return new \WP_Error( $response_code, $response_message );
 		} elseif ( 200 !== $response_code ) {
 			return new \WP_Error( $response_code, __( 'Unknown error occurred', 'search-with-google' ) );
-		} else {
+		} elseif ( ! is_wp_error( $response ) ) {
 
-			if ( ! is_wp_error( $response ) ) {
 
 				$response_body = wp_remote_retrieve_body( $response );
 				$result        = json_decode( $response_body );
 
-				if ( ! is_wp_error( $result ) ) {
+			if ( ! is_wp_error( $result ) ) {
 
-					if ( isset( $result->searchInformation->totalResults ) && isset( $result->items ) ) { // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+				if ( isset( $result->searchInformation->totalResults ) && isset( $result->items ) ) { // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 
-						$total_results = (int) $result->searchInformation->totalResults; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+					$total_results = (int) $result->searchInformation->totalResults; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 
-						// If no results found and pagination request then try another request.
-						if ( 0 === $total_results && $page > 1 ) {
-							return $this->get_search_results( $search_query, $page - 1, $posts_per_page );
-						}
+					// If no results found and pagination request then try another request.
+					if ( 0 === $total_results && $page > 1 ) {
+						return $this->get_search_results( $search_query, $page - 1, $posts_per_page );
+					}
 
-						if ( ! empty( $result->items ) ) {
-							foreach ( $result->items as $item ) {
+					if ( ! empty( $result->items ) ) {
+						foreach ( $result->items as $item ) {
 
-								$item_detail['title']   = $item->title;
-								$item_detail['link']    = $item->link;
-								$item_detail['snippet'] = $item->snippet;
+							$item_detail['title']   = $item->title;
+							$item_detail['link']    = $item->link;
+							$item_detail['snippet'] = $item->snippet;
 
-								$item_details[] = $item_detail;
-							}
+							$item_details[] = $item_detail;
 						}
 					}
-				} else {
-					return new \WP_Error( $response_code, __( 'Unknown error occurred', 'search-with-google' ) );
 				}
+			} else {
+				return new \WP_Error( $response_code, __( 'Unknown error occurred', 'search-with-google' ) );
 			}
 		}
 
@@ -157,7 +153,6 @@ class Search_Engine {
 	public function get_start_index( $page, $posts_per_page ) {
 
 		return ( $page * $posts_per_page ) - ( $posts_per_page - 1 );
-
 	}
 
 	/**
@@ -175,6 +170,5 @@ class Search_Engine {
 		}
 
 		return $api_url;
-
 	}
 }
