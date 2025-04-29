@@ -3,8 +3,8 @@ Contributors: rtCamp, kiranpotphode, sh4lin
 Donate link: https://rtcamp.com/
 Tags: google, search, cse, custom search engine, programmable search, programmable search engine, google cse, google custom search engine, google programmable search, google programmable search engine, google search
 Requires at least: 4.8
-Tested up to: 6.7.1
-Stable tag: 1.2.2
+Tested up to: 6.8
+Stable tag: 1.2.3
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -69,6 +69,9 @@ Once you're ready to send a pull request, please run through the following check
 
 == Changelog ==
 
+= 1.2.3 =
+* Compatible with WordPress 6.8
+
 = 1.2.2 =
 * Compatible with WordPress 6.7.1
 * Updates element selectors for automated testing
@@ -86,14 +89,9 @@ Once you're ready to send a pull request, please run through the following check
 
 == Upgrade Notice ==
 
+= 1.2.3 =
+* Compatible with WordPress 6.8
+
 = 1.2.2 =
 * Compatible with WordPress 6.7.1
 * Updates element selectors for automated testing
- 
-= 1.1 =
-* Compatible with WordPress 6.4.2
-* Updated PHP code to be compatible with PHP 8.2
-* Fixed WordPress coding standards issues
-* Used VIP compatible code for WordPress VIP compatibility
-* Added support for the Custom JSON API
-* Added Deprecation notice for the Custom site-restricted JSON API
