@@ -59,10 +59,10 @@ jobs:
           name: report
           path: ./tests/e2e-playwright/uploads
 
-      - name: run PR status
-        if: ${{ always() }}
-        run: node ./tests/e2e-playwright/bin/pr-status.js
-        working-directory: ${{env.working_directory}}
+      # - name: run PR status
+      #   if: ${{ always() }}
+      #   run: node ./tests/e2e-playwright/bin/pr-status.js
+      #   working-directory: ${{env.working_directory}}
 
       - name: Cleanup
         if: ${{ always() }}
