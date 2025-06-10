@@ -163,7 +163,7 @@ class Settings {
 		$setting = get_option( 'gcs_sort_by' );
 		?>
 		<select name="gcs_sort_by">
-			<option value="" <?php selected( $setting, '' ); ?>><?php esc_html_e( 'Default', 'search-with-google' ); ?></option>
+			<option value="default" <?php selected( $setting, 'default' ); ?>><?php esc_html_e( 'Default', 'search-with-google' ); ?></option>
 			<option value="date:a" <?php selected( $setting, 'date:a' ); ?>><?php esc_html_e( 'Date (Ascending)', 'search-with-google' ); ?></option>
 			<option value="date:d" <?php selected( $setting, 'date:d' ); ?>><?php esc_html_e( 'Date (Descending)', 'search-with-google' ); ?></option>
 		</select>

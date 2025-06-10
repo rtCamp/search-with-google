@@ -83,7 +83,7 @@ class Search_Engine {
 		);
 
 		// Add sort parameter if set.
-		if ( ! empty( $this->sort_by ) ) {
+		if ( ! empty( $this->sort_by ) && 'default' !== $this->sort_by ) {
 			$request_url = add_query_arg( array( 'sort' => $this->sort_by ), $request_url );
 		}
 
