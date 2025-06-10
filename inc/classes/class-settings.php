@@ -49,6 +49,7 @@ class Settings {
 		register_setting( 'reading', 'gcs_api_key', $args );
 		register_setting( 'reading', 'gcs_cse_id', $args );
 		register_setting( 'reading', 'gcs_search_type', $args );
+		register_setting( 'reading', 'gcs_sort_by', $args );
 
 		// Register a new section in the "reading" page.
 		add_settings_section(
@@ -79,6 +80,14 @@ class Settings {
 			'gcs_search_type',
 			__( 'Search Type', 'search-with-google' ),
 			array( $this, 'cse_search_type_field_cb' ),
+			'reading',
+			'cse_settings_section'
+		);
+		// Add sort settings field.
+		add_settings_field(
+			'gcs_sort_by',
+			__( 'Sort Results By', 'search-with-google' ),
+			array( $this, 'cse_sort_by_field_cb' ),
 			'reading',
 			'cse_settings_section'
 		);
@@ -142,6 +151,23 @@ class Settings {
 
 			<span><?php esc_html_e( 'Custom Search API', 'search-with-google' ); ?></span>
 		</div>
+		<?php
+	}
+
+	/**
+	 * Sort By field markup.
+	 *
+	 * @return void
+	 */
+	public function cse_sort_by_field_cb() {
+		$setting = get_option( 'gcs_sort_by' );
+		?>
+		<select name="gcs_sort_by">
+			<option value="" <?php selected( $setting, '' ); ?>><?php esc_html_e( 'Default', 'search-with-google' ); ?></option>
+			<option value="date:a" <?php selected( $setting, 'date:a' ); ?>><?php esc_html_e( 'Date (Ascending)', 'search-with-google' ); ?></option>
+			<option value="date:d" <?php selected( $setting, 'date:d' ); ?>><?php esc_html_e( 'Date (Descending)', 'search-with-google' ); ?></option>
+		</select>
+		<p class="description"><?php esc_html_e( 'Select how to sort the search results.', 'search-with-google' ); ?></p>
 		<?php
 	}
 }
