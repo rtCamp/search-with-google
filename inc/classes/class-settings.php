@@ -40,16 +40,22 @@ class Settings {
 	 */
 	public function register_settings() {
 
-		$args = array(
+		$default_args = array(
 			'type'              => 'string',
 			'sanitize_callback' => 'sanitize_text_field',
 			'default'           => null,
 		);
 
-		register_setting( 'reading', 'gcs_api_key', $args );
-		register_setting( 'reading', 'gcs_cse_id', $args );
-		register_setting( 'reading', 'gcs_search_type', $args );
-		register_setting( 'reading', 'gcs_sort_by', $args );
+		$sort_by_args = array(
+			'type'              => 'string',
+			'sanitize_callback' => array( $this, 'sanitize_sort_by' ),
+			'default'           => 'default',
+		);
+
+		register_setting( 'reading', 'gcs_api_key', $default_args );
+		register_setting( 'reading', 'gcs_cse_id', $default_args );
+		register_setting( 'reading', 'gcs_search_type', $default_args );
+		register_setting( 'reading', 'gcs_sort_by', $sort_by_args );
 
 		// Register a new section in the "reading" page.
 		add_settings_section(
@@ -169,6 +175,36 @@ class Settings {
 		</select>
 		<p class="description"><?php esc_html_e( 'Select how to sort the search results.', 'search-with-google' ); ?></p>
 		<?php
+	}
+
+	/**
+	 * Sanitize sort_by setting value.
+	 *
+	 * @param string $value The value to sanitize.
+	 * @return string The sanitized value.
+	 */
+	public function sanitize_sort_by( $value ) {
+		$allowed_values = array( 'default', 'date:a', 'date:d' );
+		
+		// First sanitize the input
+		$sanitized_value = sanitize_text_field( $value );
+		
+		// Then validate against allowed values
+		if ( in_array( $sanitized_value, $allowed_values, true ) ) {
+			return $sanitized_value;
+		}
+		
+		// Return default value if invalid
+		return 'default';
+	}
+
+	/**
+	 * Get allowed sort by values.
+	 *
+	 * @return array Array of allowed sort by values.
+	 */
+	public function get_allowed_sort_values() {
+		return array( 'default', 'date:a', 'date:d' );
 	}
 }
 
