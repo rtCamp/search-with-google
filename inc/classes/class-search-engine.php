@@ -82,9 +82,12 @@ class Search_Engine {
 			$this->get_api_url()
 		);
 
-		// Add sort parameter if set.
+		// Add sort parameter if set and validate.
 		if ( ! empty( $this->sort_by ) && 'default' !== $this->sort_by ) {
-			$request_url = add_query_arg( array( 'sort' => $this->sort_by ), $request_url );
+			$valid_sort_options = array( 'default', 'date:a', 'date:d' );
+			if ( in_array( $this->sort_by, $valid_sort_options, true ) ) {
+				$request_url = add_query_arg( array( 'sort' => $this->sort_by ), $request_url );
+			}
 		}
 
 		if ( $page > 1 ) {
