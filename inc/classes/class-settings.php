@@ -184,7 +184,7 @@ class Settings {
 	 * @return string The sanitized value.
 	 */
 	public function sanitize_sort_by( $value ) {
-		$allowed_values = array( 'default', 'date:a', 'date:d' );
+		$allowed_values = $this->get_allowed_sort_values();
 		
 		// First sanitize the input
 		$sanitized_value = sanitize_text_field( $value );
