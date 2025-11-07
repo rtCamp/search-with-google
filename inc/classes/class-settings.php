@@ -186,15 +186,15 @@ class Settings {
 	public function sanitize_sort_by( $value ) {
 		$allowed_values = $this->get_allowed_sort_values();
 		
-		// First sanitize the input
+		// First sanitize the input.
 		$sanitized_value = sanitize_text_field( $value );
 		
-		// Then validate against allowed values
+		// Then validate against allowed values.
 		if ( in_array( $sanitized_value, $allowed_values, true ) ) {
 			return $sanitized_value;
 		}
 		
-		// Return default value if invalid
+		// Return default value if invalid.
 		return 'default';
 	}
 
