@@ -31,6 +31,13 @@ class Search_Engine {
 	private $cse_id = '';
 
 	/**
+	 * Sort by option.
+	 *
+	 * @var string
+	 */
+	private $sort_by = '';
+
+	/**
 	 * Construct method.
 	 */
 	protected function __construct() {
@@ -47,6 +54,7 @@ class Search_Engine {
 
 		$this->api_key = get_option( 'gcs_api_key' );
 		$this->cse_id  = get_option( 'gcs_cse_id' );
+		$this->sort_by = get_option( 'gcs_sort_by' );
 	}
 
 	/**
@@ -73,6 +81,14 @@ class Search_Engine {
 			),
 			$this->get_api_url()
 		);
+
+		// Add sort parameter if set and validate.
+		if ( ! empty( $this->sort_by ) && 'default' !== $this->sort_by ) {
+			$valid_sort_options = array( 'default', 'date:a', 'date:d' );
+			if ( in_array( $this->sort_by, $valid_sort_options, true ) ) {
+				$request_url = add_query_arg( array( 'sort' => $this->sort_by ), $request_url );
+			}
+		}
 
 		if ( $page > 1 ) {
 			$start       = $this->get_start_index( $page, $posts_per_page );
